@@ -1,0 +1,145 @@
+<div *ngIf ="!AlertPopup && resultSetCount==0"><h4>There is no record to display.</h4></div>
+
+<div class="container" *ngIf ="!AlertPopup && resultSetCount>0">
+  <h3>Results!</h3>
+  <p>The following table shows your completed quiz</p>
+  
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <!-- <th>Name</th> -->
+        <th>Date</th>
+        <th>Score</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let res of ResultArray">
+        <!-- <td>{{res.SubGroupNm}}</td> -->
+        <td>{{res.TestDate | date:"dd/MM/yyyy"}}</td>
+        <td>{{res.PercentageScored}}%</td>
+        <td>{{res.TestResult}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+  <ngb-alert type="danger" (close)="closeAlert()" *ngIf ="AlertPopup && !ResultStatus">
+    <!-- <h2>Congratulations</h2> -->
+  
+    <div class="row card">
+        <!-- <div class="card-header">What we do?</div> -->
+        <!-- <div class="card"> </div> -->
+        <div class="col-sm-6 col-md-12">
+            <div *ngIf = "qnLanguageNumber == 1"  class="card cart-block">
+                <h4 class="card-title text-xs-center">Sorry!</h4>
+                <p class="card-title text-xs-center">You have scored {{percentageScored | number: '2.2'}}% and failed.</p>
+                <p class="card-title text-xs-center">Spend some more time on this.</p>
+                <p class="card-title text-xs-center">Let the Lord bless you.</p>
+                <p class="card-title text-xs-center">Your next test will be a Model test.<p>
+                    <p class="card-title text-xs-center">Model Test -2. Genesis: 1-10. Date: 20.06.2019<p>
+                <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
+                <!-- <div  class="mbr-figure"><img src="assets/images/Sorry.jpg" class="card-img-top"></div> -->
+                <!-- <div class="card-block">
+                    <p class="card-text">You have scored {{quizservice.FinalMarkScored}} marks</p>
+                </div> -->
+            </div>
+
+            <div *ngIf = "qnLanguageNumber == 2"  class="card cart-block">
+                <h4 class="card-title text-xs-center">மன்னிக்கவும்!</h4>
+                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள்<p></p>
+                <p class="card-title text-xs-center">தொடர்ந்து இந்த வேதபகுதியை தியானியுங்கள்.<p>
+                <p class="card-title text-xs-center">உங்கள் அடுத்த தேர்வு : பயிற்சி தேர்வு 2: ஆதியாகமம் 1 – 10. 20.06.2019 அன்று.<p>
+                <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
+                <!-- <div  class="mbr-figure"><img src="assets/images/Sorry.jpg" class="card-img-top"></div> -->
+                <!-- <div class="card-block">
+                    <p class="card-text">You have scored {{quizservice.FinalMarkScored}} marks</p>
+                </div> -->
+            </div>
+
+        </div>
+        <!-- <div class= "col-sm-6 col-md-6">
+            <div class="card cart-block">
+                <h1 class="card-title text-xs-center">{{quizservice.FinalMarkScored}}</h1>
+            </div>
+        </div> -->
+    </div>
+  
+  </ngb-alert>
+
+  <ngb-alert type="success" (close)="closeAlert()" *ngIf ="AlertPopup && ResultStatus">
+    <!-- <h2>Congratulations</h2> -->
+  
+    <div class="row card">
+        <!-- <div class="card-header">What we do?</div> -->
+        <!-- <div class="card"> </div> -->
+        <div *ngIf = "qnLanguageNumber == 1" class="col-sm-6 col-md-12">
+            <div class="card cart-block">
+                <h4 class="card-title text-xs-center">Congratulations!</h4>
+                <p class="card-title text-xs-center">You have scored {{percentageScored | number: '2.2'}}% and passed.<p>
+                <p class="card-title text-xs-center">Your next test will be a Model test.<p>
+                <p class="card-title text-xs-center">Model Test -2. Genesis: 1-10. Date: 20.06.2019<p>
+                <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
+                <!-- <div  class="mbr-figure"><img src="assets/images/Winner.jpg" class="card-img-top"></div> -->
+                <!-- <div class="card-block">
+                    <p class="card-text">You have scored {{quizservice.FinalMarkScored}} marks</p>
+                </div> -->
+            </div>
+        </div>
+
+        <div *ngIf = "qnLanguageNumber == 2" class="col-sm-6 col-md-12">
+            <div class="card cart-block">
+                <h4 class="card-title text-xs-center">வாழ்த்துக்கள்!</h4>
+                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள்<p></p>
+                <p class="card-title text-xs-center">தொடர்ந்து இந்த வேதபகுதியை தியானியுங்கள்.<p>
+                <p class="card-title text-xs-center">உங்கள் அடுத்த தேர்வு : பயிற்சி தேர்வு 2: ஆதியாகமம் 1 – 10. 20.06.2019 அன்று.<p>
+                <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
+                <!-- <div  class="mbr-figure"><img src="assets/images/Winner.jpg" class="card-img-top"></div> -->
+                <!-- <div class="card-block">
+                    <p class="card-text">You have scored {{quizservice.FinalMarkScored}} marks</p>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- <div class= "col-sm-6 col-md-6">
+            <div class="card cart-block">
+                <h1 class="card-title text-xs-center">{{quizservice.FinalMarkScored}}</h1>
+            </div>
+        </div> -->
+    </div>
+  
+  </ngb-alert>
+
+
+  <!-- <app-navbar></app-navbar> -->
+<!-- <br> -->
+<!-- <div class="row"> -->
+  <!-- <div class="col"></div> -->
+  <!-- <div class= "row"> 
+    <div class="col-2"></div>
+    <div class="card-columns" *ngIf = "quizservice.qns">
+      <div class="card bg-info">
+        <div class="card-body text-center">
+          <h4 class="card-title">The Quiz is complete!</h4>
+          <p class="card-text ">You have scored {{quizservice.FinalMarkScored}} marks</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div> -->
+
+
+<!--   
+  <div class="row" *ngIf ="AlertPopup" >
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Buttons</div>
+            <div class="card-body">
+                <ngb-alert type="success" (close)="closeAlert()"><h2>Congratulations</h2></ngb-alert>
+            </div>
+        </div>
+    </div>
+</div> -->

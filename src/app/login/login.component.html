@@ -1,0 +1,51 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <!-- <img src="assets/images/logo.jpg" width="150px" class="user-avatar" /> -->
+            <h3>CSI St.Matthew's Church, Porur</h3>
+            <h4>Youth Fellowship</h4>
+            <h4>Bible Quiz</h4>
+            <form role="form" ngForm #loginform = "ngForm" (ngSubmit) = "Submit(loginform)" autocomplete="off">
+                <div class="form-content" ngModelGroup ="LoginFormModelGrp" #registerForm = "ngModelGroup">
+                    <div class  = "form-group alert alert-warning" *ngIf = "LoginStatus == 'InvalidUser'">User Doesn't Exists!</div>    
+                    <div class  = "form-group alert alert-warning" *ngIf = "LoginStatus == 'InvalidPassword'">Invalid Password!</div>
+                    <div class="form-group">
+                      <!-- <label for= "Email">Email: </label> -->
+                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
+                      <input ngModel class = "form-control input-underline input-lg" id="UserName" name="UserName"  type="text"
+                          placeholder="registered mobile number" minlength = "8" maxlength="15" required #MobileNumber = "ngModel" [pattern] = "MobileNumberPattern"/>
+                      <div class="alert alert-danger" *ngIf = "!MobileNumber.valid && MobileNumber.touched">
+                        <div *ngIf="MobileNumber.errors.required">Mobile Number is required</div>
+                        <div *ngIf="MobileNumber.errors.minlength">Should be a valid 8 to 15 digit number</div>
+                        <!-- <div *ngIf="MobileNumber.errors.max">Mobile Number is required</div> -->
+                        <div *ngIf="MobileNumber.errors.maxlength">Should be a valid 8 - 15 digit number</div>
+                        <div *ngIf="MobileNumber.errors.pattern">Should be a valid mobile number(no space/special characters)</div>
+                      </div> 
+                    </div>
+      
+                    <div class="form-group">
+                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
+                      <!-- <label for= "Password">Password: </label> -->
+                      <input  class = "form-control input-underline input-lg" id="Pwd" name="Pwd" required
+                        placeholder="Password"  type = "password" minlength = "4" ngModel  
+                        #Password = "ngModel" />
+                      <div class="alert alert-danger" *ngIf = "!Password.valid && Password.touched">
+                          <div *ngIf="Password.errors.required">Password is required</div>
+                          <div *ngIf="Password.errors.minlength">Minimum length is {{ Password.errors.minlength.requiredLength }}</div>
+                      </div> 
+                    </div>
+      
+                  <!-- <div *ngIf="registerForm.touched && registerForm.invalid" class = "alert alert-danger">Clear all the Errors and Submit</div>  -->
+                <div class="form-group">
+                  <button class="btn rounded-btn" [disabled] = "!loginform.valid">Login</button> 
+                <!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a> -->
+                  <!-- &nbsp; -->
+                  <!-- <a class="btn rounded-btn" [routerLink]="['/signup']">New User?</a>  -->
+                  <!-- <button class="btn rounded-btn">Sign Up</button>  -->
+                <!-- <a class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</a> -->
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>

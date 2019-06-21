@@ -1,0 +1,237 @@
+<div class="card">
+    <div class="card-header">Choose a quiz</div>
+    <div class="card-body">
+        <div class="row">
+            <p></p>
+            <div class="col">
+                <!-- <div class="btn-group" *ngFor= "let Groups of UniqueGroupArray"> -->
+                    <!-- &nbsp; &nbsp;  -->
+                    <!-- <button type="button" class="btn btn-primary dropdown-toggle"  data-toggle="dropdown" (click) = "chosenGroupId(Groups.GroupId)">{{Groups.GroupNm}}</button> -->
+                    <!-- <div class="dropdown-menu">
+                        <a class="dropdown-item" *ngFor= "let SubGroups of ChosenGroupArray" (click)="subgroupSection(SubGroups.SubGroupId)">{{SubGroups.SubGroupNm}}</a>
+                    </div> -->
+                <!-- </div> -->
+                <!-- <div class="dropdown-menu">
+                    <a class="dropdown-item" *ngFor= "let SubGroups of ChosenGroupArray" (click)="subgroupSection(SubGroups.SubGroupId)">{{SubGroups.SubGroupNm}}</a>
+                </div> -->
+                <div *ngFor= "let SubGroups of ChosenGroupArray">
+                    <a class = "ex2" href="javascript:void(0)" (click)="subgroupSection(SubGroups.SubGroupId)">{{SubGroups.SubGroupNm}}</a>
+                </div>
+            </div>
+                <!-- <div class="col">
+                <div ngbDropdown class="d-inline-block dropdown" *ngFor= "let Groups of UniqueGroupArray">
+                    &nbsp; &nbsp; <button class="btn btn-outline-primary" ngbDropdownToggle>{{Groups.GroupNm}}</button>
+                    <div  ngbDropdownMenu *ngFor= "let SubGroups of ChosenGroupArray">
+                        <button class="dropdown-item">{{SubGroups.SubGroupNm}}</button>
+                        <button class="dropdown-item">Another Action</button>
+                        <button class="dropdown-item">Something else is here</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col text-right">
+                <div ngbDropdown placement="top-right" class="d-inline-block dropdown">
+                    <button class="btn btn-outline-primary" ngbDropdownToggle>Toggle dropup</button>
+                    <div ngbDropdownMenu>
+                        <button class="dropdown-item">Action</button>
+                        <button class="dropdown-item">Another Action</button>
+                        <button class="dropdown-item">Something else is here</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- <hr> -->
+        <!-- <p class="mb-2">You can easily control dropdowns programmatically using the exported dropdown instance.</p> -->
+        <!-- <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary" ngbDropdownToggle>Toggle dropdown</button>
+            <div ngbDropdownMenu>
+                <button class="dropdown-item">Action</button>
+                <button class="dropdown-item">Another Action</button>
+                <button class="dropdown-item">Something else is here</button>
+            </div>
+        </div>
+        <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-success" (click)="$event.stopPropagation(); myDrop.open();">Open from outside</button>
+        </div>
+        <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-danger" (click)="$event.stopPropagation(); myDrop.close();">Close from outside</button>
+        </div> -->
+    </div>
+</div>
+<br>
+
+<!-- <div [@routerTransition]> -->
+<!-- <app-navbar></app-navbar> -->
+<!-- <app-header></app-header> -->
+<!-- <div class="container"> -->
+    <!-- <h2>Welcome to the board of Quiz</h2> -->
+    <div class="card">
+        <div class="card-header"  *ngIf="ChosenSubGroup" >{{ChosenSubGroupName}}</div>
+        <div class="card-body">
+    
+                <div  *ngIf="ChosenSubGroup" >
+                        <div class="alert alert-info" *ngIf = "!showStartQuizBtn && (AttemptsExceededAlertMsg.length >0 || QuizDateClosedAlertMsg .length >0)">
+                                 
+                                <div *ngIf ="AttemptsExceededAlertMsg.length>0"><strong>Information! </strong>{{AttemptsExceededAlertMsg}}</div>
+                                <div *ngIf ="QuizDateClosedAlertMsg.length>0"><strong>Information! </strong>{{QuizDateClosedAlertMsg}}</div>
+                        </div>
+                        <!-- <div class="alert alert-info" *ngIf = "!showStartQuizBtn && QuizDateClosedAlertMsg .length >0">
+                                <strong>Information! </strong> <p>{{QuizDateClosedAlertMsg}}</p>
+                        </div> -->
+                        <!-- <div class= "container">
+                          <h3>{{ChosenGroupArray[0].GroupNm}} ({{ChosenSubGroupArray[0].SubGroupNm}}) </h3>
+                        </div> -->
+                        <!-- <br> -->
+                        <div class="container-fluid row">
+                          <div class= "col">
+                              <p><b>Total Questions:</b></p>
+                          </div>
+                          <div class= "col">
+                              <p>{{ChosenSubGroupArray[0].NoOfQuestions}}</p>
+                          </div>
+                        </div>
+                        <div class="container-fluid row">
+                            <div class= "col">
+                                <p><b>Duration:</b></p>
+                            </div>
+                            <div class= "col">
+                                <p>{{ChosenSubGroupArray[0].QuizDuration / 60 }} minutes</p>
+                            </div>
+                        </div>      
+                        <div class="container-fluid row">
+                            <div class= "col">
+                                <p><b>Attempts Allowed:</b></p>
+                            </div>
+                            <div class= "col">
+                                <p>{{ChosenSubGroupArray[0].NoOfAttemptsAllowed}}</p>
+                            </div>
+                        </div>      
+                        <div class="container-fluid row">
+                            <div class= "col">
+                                <p><b>Start Date:</b></p>
+                            </div>
+                            <div class= "col">
+                                <p>{{ChosenSubGroupArray[0].QuizStartDt | date:"dd/MM/yyyy" }}</p>
+                            </div>
+                        </div>      
+                        <div class="container-fluid row">
+                            <div class= "col">
+                                <p><b>End Date:</b></p>
+                            </div>
+                            <div class= "col">
+                                <p>{{ChosenSubGroupArray[0].QuizEndDt | date:"dd/MM/yyyy" }}</p>
+                            </div>
+                        </div>
+                        <div class="container-fluid row">
+                            <div class= "col">
+                                <p><b>Completed Attempts:</b></p>
+                            </div>
+                            <div class= "col">
+                                <p>{{ChosenSubGroupArray[0].UserAttempts}}</p>
+                            </div>
+                        </div>      
+                        <br>
+
+                        <div class="row">
+                            <div class="col-xl-3"></div>
+                            <div class="col-xl-9" *ngIf = "showStartQuizBtn">
+                                <button class="btn btn-primary" (click)= "PrepareForTheQuiz(ChosenSubGroupArray[0].SubGroupId, 1)" [disabled] = "IsEnglishEnabled !=1" >English</button> 
+                                &nbsp; &nbsp;
+                                <button class="btn btn-primary" (click)= "PrepareForTheQuiz(ChosenSubGroupArray[0].SubGroupId, 2)"  [disabled] = "IsTamilEnabled !=1" >தமிழ்</button> 
+                            </div>
+                        </div>              
+                      </div>
+            <!-- </div> 
+        </div> 
+           -->
+
+
+            <!-- <div class="row">
+                <h4>Category: </h4>
+                <div class="col">
+                    <div ngbDropdown class="d-inline-block dropdown">
+                        
+                        <button class="btn btn-outline-primary" ngbDropdownToggle>{{ChosenGroupName}}</button>
+                        <div ngbDropdownMenu *ngFor= "let Groups of UniqueGroupArray">
+                            <a class="dropdown-item" (click) = "chosenGroupId(Groups.GroupId, Groups.GroupNm)">{{Groups.GroupNm}}</a>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col">
+                    <div ngbDropdown class="d-inline-block dropdown">
+                        
+                        <button placement="top-right" class="btn btn-outline-primary" ngbDropdownToggle>{{ChosenGroupName}}</button>
+                        <div ngbDropdownMenu *ngFor= "let Groups of UniqueGroupArray">
+                            <a class="dropdown-item" (click) = "chosenGroupId(Groups.GroupId, Groups.GroupNm)">{{Groups.GroupNm}}</a>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- &nbsp;
+                <h4>Sub Category: </h4>
+                <div class="col" *ngIf="ChosenGroupArray">
+                        <div ngbDropdown class="d-inline-block dropdown">
+                            <h4>Quiz Category</h4>
+                            <button class="btn btn-outline-primary" ngbDropdownToggle>{{ChosenSubGroupName}}</button>
+                            <div ngbDropdownMenu *ngFor= "let SubGroups of ChosenGroupArray">
+                                <button class="dropdown-item" (click)="subgroupSection(SubGroups.SubGroupId, SubGroups.SubGroupNm)">{{SubGroups.SubGroupNm}}</button>
+                            </div>
+                        </div>
+                </div> -->
+                <!-- <div class="col text-right">
+                    <div ngbDropdown placement="top-right" class="d-inline-block dropdown">
+                        <button class="btn btn-outline-primary" ngbDropdownToggle>Toggle dropup</button>
+                        <div ngbDropdownMenu>
+                            <button class="dropdown-item">Action</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <hr> -->
+            <!-- <p class="mb-2">You can easily control dropdowns programmatically using the exported dropdown instance.</p> -->
+            <!-- <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-outline-primary" ngbDropdownToggle>Toggle dropdown</button>
+                <div ngbDropdownMenu>
+                    <button class="dropdown-item">Action</button>
+                    <button class="dropdown-item">Another Action</button>
+                    <button class="dropdown-item">Something else is here</button>
+                </div>
+            </div> -->
+            <!-- <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-outline-success" (click)="$event.stopPropagation(); myDrop.open();">Open from outside</button>
+            </div>
+            <div class="d-inline-block dropdown" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-outline-danger" (click)="$event.stopPropagation(); myDrop.close();">Close from outside</button>
+            </div> -->
+        <!-- </div> -->
+
+
+
+
+    <!-- <p>Choose your quiz & proceed</p>
+    <br>
+    <div class="btn-group" *ngFor= "let Groups of UniqueGroupArray">
+
+      <button type="button" class="btn btn-primary dropdown-toggle"  data-toggle="dropdown" (click) = "chosenGroupId(Groups.GroupId)">{{Groups.GroupNm}}</button>
+      <div class="dropdown-menu">
+          <a class="dropdown-item" *ngFor= "let SubGroups of ChosenGroupArray" (click)="subgroupSection(SubGroups.SubGroupId)">{{SubGroups.SubGroupNm}}</a>
+      </div>
+    </div>
+    <br> -->
+
+    
+<!-- </div> -->
+<!-- </div> -->
+    <!--   
+
+<nav class="navbar bg-light">
+  <ul class="navbar-nav" *ngFor= "let Groups of UniqueGroupArray; let i = index">
+    <li class="nav-item">
+      <a class="nav-link" href="#">{{Groups.GroupNm}} - {{i}}</a>
+    </li>
+  </ul>
+</nav>  -->

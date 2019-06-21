@@ -1,0 +1,99 @@
+<div class="login-page" [@routerTransition]>
+    <!-- <a class="btn rounded-btn" [routerLink]="['/home']">Home</a> -->
+    
+    <div class="row justify-content-md-center">
+            
+        <div class="col-md-4">
+            <img class="user-avatar" src="assets/images/logo.jpg" width="150px" />
+            <h1>Quiz Application</h1>
+            <form role="form" ngForm #f = "ngForm" (ngSubmit) = "Submit(f)" autocomplete="off">
+                <div class="form-content" ngModelGroup ="RegisterForm" #registerForm = "ngModelGroup">
+                  <div class="form-group">
+                    <div class  = "form-group alert alert-success" *ngIf = "RegistrationStatus == 'Success'">Registration successful!. You will be redirected to Login page</div>
+                    <div class  = "form-group alert alert-warning" *ngIf = "RegistrationStatus == 'UserExists'">Warning! This user already exists in database!</div>
+                  
+                    <!-- <br> -->
+                      
+                    <!-- <label for= "Name">Name: </label> -->
+                    <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
+                    <input ngModel class = "form-control input-underline input-lg" id="PersonName" name="PersonName"  type="text"
+                    placeholder="Name" minlength = "3" maxlength="50" required #PersonName = "ngModel"/>
+                    <div class="alert alert-danger" *ngIf = "!PersonName.valid && PersonName.touched">
+                      <div *ngIf="PersonName.errors.required">Name is required</div>
+                      <div *ngIf="PersonName.errors.minlength">Minimum lenght is 3</div>
+                      <div *ngIf="PersonName.errors.maxlength">Maximum lenght is 50</div>
+                    </div> 
+                  </div>  
+    
+                <div class="form-group">
+                    <!-- <label for= "MobileNumber">Mobile Number (Without spaces): </label> -->
+                    <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
+                    <input ngModel class = "form-control input-underline input-lg" id="MobileNumber" name="MobileNumber"  type="text"
+                    placeholder="Mobile Number" maxlength="10" minlength="10" required #MobileNumber = "ngModel" [pattern] = "MobileNumberPattern"/>
+                    <div class="alert alert-danger" *ngIf = "!MobileNumber.valid && MobileNumber.touched">
+                      <div *ngIf="MobileNumber.errors.required">Mobile Number is required</div>
+                      <div *ngIf="MobileNumber.errors.minlength">Should be a valid 10 digit number</div>
+                      <!-- <div *ngIf="MobileNumber.errors.max">Mobile Number is required</div> -->
+                      <div *ngIf="MobileNumber.errors.maxlength">Should be a valid 10 digit number</div>
+                      <div *ngIf="MobileNumber.errors.pattern">Should be a valid mobile number</div>
+                    </div> 
+                </div>        
+                
+    
+                <div class="form-group">
+                  <!-- <label for= "Email">Email: </label> -->
+                  <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
+                  <input ngModel class = "form-control input-underline input-lg" id="Email" name="Email"  type="text"
+                    placeholder="Email Address" minlength = "4" required #EmailAddress = "ngModel"
+                    [pattern] = "EmailPattern"/>
+                  <div class="alert alert-danger" *ngIf = "!EmailAddress.valid && EmailAddress.touched">
+                    <div *ngIf="EmailAddress.errors.required">Email Address is required</div>
+                    <div *ngIf="EmailAddress.errors.minlength">Minimum lenght is 4</div>
+                    <div *ngIf="EmailAddress.errors.pattern">Not a valid Email Address</div>
+                  </div> 
+                </div>
+    
+                <div class="form-group">
+                  <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
+                  <!-- <label for= "Password">Password: </label> -->
+                  <input  class = "form-control input-underline input-lg" id="Pwd" name="Pwd" required
+                    placeholder="Password"  type = "password" minlength = "4" ngModel  
+                    #Password = "ngModel" />
+                  <div class="alert alert-danger" *ngIf = "!Password.valid && Password.touched">
+                      <div *ngIf="Password.errors.required">Password is required</div>
+                      <div *ngIf="Password.errors.minlength">Minimum length is {{ Password.errors.minlength.requiredLength }}</div>
+                  </div> 
+                </div>
+              
+                <div class="form-group">
+                    <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
+                    <!-- <label for= "ConfirmPassword">Confirm Password: </label> -->
+                    <input  class = "form-control input-underline input-lg" id="ConfirmPwd" name="ConfirmPwd" required
+                      placeholder="Password"  type = "password" minlength = "4" ngModel  
+                      #CnfrmPassword = "ngModel" />
+                    <div class="alert alert-danger" *ngIf = "!CnfrmPassword.valid && CnfrmPassword.touched">
+                        <div *ngIf="CnfrmPassword.errors.required">Password is required</div>
+                        <div *ngIf="CnfrmPassword.errors.minlength">Minimum length is {{ CnfrmPassword.errors.minlength.requiredLength }} </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="Password.value!==CnfrmPassword.value && CnfrmPassword.dirty">Passwords are not matching</div>
+                  </div>
+    
+                  <!-- <div *ngIf="registerForm.touched && registerForm.invalid" class = "alert alert-danger">Clear all the Errors and Submit</div>  -->
+                  <div class="form-group">
+                    <!-- <div class = "row"> -->
+                      <!-- <div class="col-4"> -->
+                        <button class="btn rounded-btn" [disabled] = "!f.valid || Password.value!==CnfrmPassword.value">Sign Up</button> 
+                        &nbsp;
+                        <a class="btn rounded-btn" [routerLink]="['/login']">Existing User?</a> 
+                        <!-- <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a> -->
+                      <!-- </div> -->
+                      <!-- <div class="col-2"> -->
+                          
+                  </div>
+                </div>
+              </form>
+            
+            
+        </div>
+    </div>
+</div>

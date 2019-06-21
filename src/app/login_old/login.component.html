@@ -1,0 +1,56 @@
+<!-- <router-outlet></router-outlet> -->
+<!-- <div> -->
+  <!-- <img src = "/assets/Lion.JPG" class="img-responsive" width="100%" height="500px"> -->
+<!-- </div> -->
+<div class="container login-page">
+  
+    <!-- <h2>Quiz - Login Form</h2> -->
+  
+    <!-- <a (click) = "NewUserclick()" style="color: blue">New User?</a> -->
+    <!-- <a routerLink="/register" (click) = "NewUserclick()" routerLinkActive="active">New User?</a> -->
+  
+  
+<!-- <br> -->
+  <div class="row justify-content-md-center">
+      <div class="col-md-4">
+          <img src="assets/images/logo.jpg" width="150px" class="user-avatar" />
+          <h1>Login</h1>
+          <form role="form" ngForm #loginform = "ngForm" (ngSubmit) = "Submit(loginform)" autocomplete="off">
+
+            <div class="form-content" ngModelGroup ="LoginFormModelGrp" #registerForm = "ngModelGroup">
+              <div class  = "form-group alert alert-warning" *ngIf = "LoginStatus == 'InvalidUser'">Invalid Password!</div>    
+              <div class  = "form-group alert alert-warning" *ngIf = "LoginStatus == 'InvalidPassword'">Invalid Password!</div>
+              <div class="form-group">
+                <!-- <label for= "Email">Email: </label> -->
+                <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
+                <input ngModel class = "form-control input-underline input-lg" id="Email" name="Email"  type="text"
+                    placeholder="Email Address" minlength = "4" required #EmailAddress = "ngModel"
+                    [pattern] = "EmailPattern"/>
+                <div class="alert alert-danger" *ngIf = "!EmailAddress.valid && EmailAddress.touched">
+                  <div *ngIf="EmailAddress.errors.required">Email Address is required</div>
+                  <div *ngIf="EmailAddress.errors.minlength">Minimum lenght is 4</div>
+                  <div *ngIf="EmailAddress.errors.pattern">Not a valid Email Address</div>
+                </div> 
+              </div>
+
+              <div class="form-group">
+                <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
+                <!-- <label for= "Password">Password: </label> -->
+                <input  class = "form-control input-underline input-lg" id="Pwd" name="Pwd" required
+                  placeholder="Password"  type = "password" minlength = "4" ngModel  
+                  #Password = "ngModel" />
+                <div class="alert alert-danger" *ngIf = "!Password.valid && Password.touched">
+                    <div *ngIf="Password.errors.required">Password is required</div>
+                    <div *ngIf="Password.errors.minlength">Minimum length is {{ Password.errors.minlength.requiredLength }}</div>
+                </div> 
+              </div>
+
+            <!-- <div *ngIf="registerForm.touched && registerForm.invalid" class = "alert alert-danger">Clear all the Errors and Submit</div>  -->
+          <div class="form-group">
+            <button class="btn rounded-btn" [disabled] = "!loginform.valid">Sumbit</button> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

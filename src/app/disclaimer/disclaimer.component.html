@@ -1,0 +1,132 @@
+<!-- *ngIf = "qnLanguageNumber == 2" -->
+<!-- <p></p> -->
+<div class="disclaimer-page" *ngIf = "qnLanguageNumber == 1">
+    <div class="row alert alert-info">
+      <!-- <div class="col-md-2"></div> -->
+      <div>
+          Glory be to the <strong>Lord</strong> Almighty!.
+      </div>
+        
+    </div>
+    <div class="form-group" >
+        <div class="form-control">
+            <!-- <div class="col-md-2"></div> -->
+            <!-- <div class="col-md-8"> -->
+                <h3>Instructions!</h3>
+            <!-- </div> -->
+              
+        </div>
+        <hr>
+    </div>
+    <div class = "row">
+      <!-- <div class="col-md-2"></div> -->
+      <div class = "inputs">
+            <p>1. This test is limited to 10 minutes and allowed once.</p>
+            <!-- <p>2. மொத்த மதிப்பெண்கள் <strong>30</strong></p> -->
+            <p>2. You will be asked 30 questions.</p>
+            <p>3. Please make sure you are connected to uninterrupted internet and have enough charge on the device.</p>            <p>4.	Avoid Answering phone calls/message during the test. The test will be auto submitted after 10 minutes.d</p>
+            <p>5. Avoid accessing other Applications during the test</p>
+            <p>6. After answering all questions you may click the Submit button.</p>
+            <p>7. Your score will be displayed after submitting the test</p>
+            <p>8. Please DON'T press the browser back button during the test progression.</p>
+            <p>9. This is only a Model test and will not affect the actual competition.  Pass score is 35%. </p>
+            <p>10. For more details please contact 9884993584.</p>
+
+      </div>
+      
+    </div>
+    <!-- <hr> -->
+    <!-- <div class="form-group"> -->
+        <!-- <div class="col-md-4"></div> -->
+        <!-- <div class="col-md-4"> -->
+                <p>
+                        <button type="button" class="btn btn-primary" [routerLink]="['/form']">Cancel</button> &nbsp;
+                        <button type="button" class="btn btn-primary" (click) = "startTheQuiz()">Start Quiz</button>
+                </p>
+        <!-- </div> -->
+    <!-- </div> -->
+
+
+
+    <!-- <div class="row">
+        <div class="col-md-1">
+            <button class="btn btn-primary">Cancel</button>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary" (click) = "startTheQuiz()">Start Quiz</button>
+        </div>
+      
+    </div> -->
+  
+  </div>
+
+  <div class="disclaimer-page" *ngIf = "qnLanguageNumber == 2">
+      <div class="row alert alert-info form-group">
+        <!-- <div class="col-md-2"></div> -->
+        <div>
+            <strong>கர்த்தருடைய</strong> நாமம் மட்டுமே மகிமைப்படட்டும்.
+        </div>
+          
+      </div>
+      <div class="form-group" >
+          <div class="form-content">
+              <!-- <div class="col-md-2"></div> -->
+              <!-- <div class="col-md-8"> -->
+                  <h3>அறிவுறுத்தல்கள்!</h3>
+              <!-- </div> -->
+                
+            </div>
+          <hr>
+      </div>
+      <div class = "row">
+        <!-- <div class="col-md-2"></div> -->
+        <div class = "inputs">
+          <p>1.	இத்தேர்வு 10 நிமிடம் வரை நடைபெறும். ஒரே ஒரு முறை மட்டுமே தேர்வில் பங்குபெற இயலும்.</p>
+          <!-- <p>2. மொத்த மதிப்பெண்கள் <strong>30</strong></p> -->
+          <p>2.	மொத்தம் 30 கேள்விகள்.</p>
+          <p>3.	இத்தேர்வுக்கும் தொடர் இணைய வசதியும், போதிய பேட்டரி இருப்பையும் உறுதிசெய்யவும்.</p>
+          <p>4.	தேர்வில் பங்குபெறும் போது எந்த அழைப்பு, குறுஞ்செய்தி வந்தாலும் தவிர்க்கவும். 10 நிமிடத்திற்க்கு பிறகு தேர்வு தானியாக நிறைவடையும்.</p>
+          <p>5.	தேர்வில் இருக்கும் போது பைபிள், கூகுள் மற்றும் வேறு வெளி செயலிகளை திறக்க கூடாது.</p>
+          <p>6.	அனைத்து கேள்விகளுக்கும் பதில் அளித்தப்பின் Submit பட்டணை கிளிக் செய்யவும்.</p>
+          <p>7.	உங்களுக்கான மதிப்பெண் உடனே திரையில் தோன்றும்.</p>
+          <p>8.	எக்காரணத்தை கொண்டும் உங்கள் செல்போனின் Back பட்டனை பயன்படுத்தாதீர்கள்.</p>
+          <p>9.	இத்தேர்வு பயிற்ச்சிக்கு மட்டுமே.  தேர்ச்சி மதிப்பெண் 35% இந்த மதிப்பெண் உங்கள் போட்டி தேர்வை பாதிக்காது.</p>
+          <p>10. மேலும் விவரங்களுக்கு 9884993584.</p>
+        </div>
+        
+      </div>
+      <hr>
+
+      <P>
+            <button type="button" class="btn btn-primary"  [routerLink]="['/form']">ரத்து</button> &nbsp;
+            <button type="button" class="btn btn-primary" (click) = "startTheQuiz()">தொடங்கு</button>
+      </P>
+      <!-- <div class="row">
+          <div class="col-md-1">
+              <button class="btn btn-primary">ரத்து</button>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">
+              <button class="btn btn-primary" (click) = "startTheQuiz()">தொடங்கு</button>
+          </div>
+         -->
+      </div>
+    
+    <!-- </div> -->
+
+
+<!-- <div class="alert alert-success">
+    <strong>Well done!</strong> You successfully read this important alert message.
+</div>
+<div class="alert alert-info">
+    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+</div>
+<div class="alert alert-warning">
+    <strong>Warning!</strong> Best check yo self, you're not looking too good.
+</div>
+<div class="alert alert-danger">
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+</div> -->
