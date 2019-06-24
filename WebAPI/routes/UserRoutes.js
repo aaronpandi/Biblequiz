@@ -209,6 +209,37 @@ router.get('/group/:groupId/:userLoggedIn', function(req, res)
 
   );
 
+//Get the user attmpts already made
+router.get('/userAttempts/:subGroupId/:userLoggedIn', function(req, res)
+  {
+  //  var test = req.params.groupId;
+  //   console.log(test);
+    userModel.getUserAttemptsForSubGroup(req.params.subGroupId, req.params.userLoggedIn, function(err, rows)
+      {
+        if(err)
+        {
+          res.send(err);
+        }
+        else if (rows[0].length >0)
+        {
+          // console.log(rows[0]);
+          return res.send(rows[0]);
+          }
+          else
+          {
+            res.send({
+              "Module": "GetUserAttemptsForTheSubGroup",
+              "ErrorCode": null,
+              "IsSuccess": false,
+              "RowsAffected": "",
+              "Message": "The result doesnt return any output"
+            });
+          }
+        });
+    }
+
+  );
+
 
 // Validate the logged in user
 router.post('/logincheck', function(req, res)

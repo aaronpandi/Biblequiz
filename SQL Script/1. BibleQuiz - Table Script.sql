@@ -12,24 +12,24 @@ IF EXISTS (
 	WHERE TABLE_NAME = 'LoginDetails' and TABLE_SCHEMA = 'QuizApplication'
 )
 */
-DROP TABLE`BibleQuizApp`.`Groups`; 
+DROP TABLE `Roles`; 
 
-CREATE TABLE`BibleQuizApp`.`Groups` (
-	GroupId INT NOT NULL AUTO_INCREMENT primary key,
-	GroupNm NVARCHAR(100) NOT NULL,
-	GroupDescr NVARCHAR(200) NULL,
+CREATE TABLE `Roles` (
+	RoleId INT NOT NULL AUTO_INCREMENT primary key,
+	RoleNm NVARCHAR(100) NOT NULL,
+	RoleDescr NVARCHAR(200) NULL,
     IsActive bit not  null default 1,
 	CreateDttm DATETIME DEFAULT CURRENT_TIMESTAMP,
 	UpdateDttm DATETIME ON UPDATE CURRENT_TIMESTAMP
 )
-ENGINE = InnoDB character SET = utf8;
+ENGINE = InnoDB ;
 
 #SHOW tables IN QuizApplication;
 
 DROP TABLE LoginDetails;
 
-CREATE table`BibleQuizApp`.`LoginDetails` (
-	LoginId INT NOT NULL AUTO_INCREMENT primary key,
+CREATE table `UserRoles` (
+	UserRoleMa INT NOT NULL AUTO_INCREMENT primary key,
 	UserName VARCHAR(50) NOT NULL unique,
 	Password VARCHAR(100) NULL,
     PersonName varchar(50) NULL,

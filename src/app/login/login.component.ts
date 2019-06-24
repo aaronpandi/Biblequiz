@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
       // console.log(this.loginDetaing servel);
       this.ds.LoginValidation(this.loginDetail).subscribe (
         (data) => {
-          console.log("Aaron");
-          console.log(data);
+          // console.log("Aaron");
+          // console.log(data);
         if (data.Module == "LoginCheck" && data.IsSuccess == true)
         {
           this.ds.LoggedInUser = this.loginDetail.UserName;
@@ -79,7 +79,9 @@ export class LoginComponent implements OnInit {
   
         }
   
-          }, (error) => {console.log(error);}
+          }, (error) => {
+            // console.log(error);
+          }
       )
     }
   

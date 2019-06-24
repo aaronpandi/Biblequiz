@@ -15,6 +15,7 @@
         </div>
 
     </div>
+    <br>
     <div *ngIf = "showQuizSection && quizservice.qns && quizservice.timeAllocated > quizservice.seconds">
         
       
@@ -67,7 +68,8 @@
         <div>
           <div  *ngFor = "let optionsForQns of quizservice.qns[quizservice.qnProgress].Options; let i= index" >
             <div class="inputs">
-              <input type="radio"   name="optradio" *ngIf ="optionsForQns != null" (click) = "ChosenOption(i)" [checked] = "ChoosenOptionId !== null && (ChoosenOptionId) == i">{{optionsForQns}}
+              <input type="radio"   name="optradio" *ngIf ="optionsForQns != null" (click) = "ChosenOption(i)" 
+                [checked] = "ChoosenOptionId !== null && (ChoosenOptionId) == i">{{optionsForQns}}
             </div>
               <!--      
             <li *ngIf ="optionsForQns != null" (click) = "ChooseOptions(quizservice.qns[quizservice.qnProgress].QuestionId, i)">

@@ -27,7 +27,7 @@ const routes: Routes = [
             , loadChildren: './result/result.module#ResultModule'
             // , canDeactivate: [ResultCanDeactivateService] 
             }
-            // { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
+            // ,{ path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
         ]
     }
 ];

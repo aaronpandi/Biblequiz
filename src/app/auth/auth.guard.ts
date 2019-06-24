@@ -15,13 +15,13 @@ constructor (private Quizrouter: Router, private quizservice: QuizServiceService
     state: RouterStateSnapshot): boolean {
       // console.log(localStorage.getItem('participant') );
 
-      console.log("Auth Validation");
+      // console.log("Auth Validation");
       // console.log(localStorage.getItem('userLoggedIn'));
       // console.log(this.Quizrouter. );
       
       if (localStorage.getItem('participant') != null && localStorage.getItem('userLoggedIn') != null)
       {
-        console.log(localStorage.getItem('participant'));
+        // console.log(localStorage.getItem('participant'));
 
         return true;
       }

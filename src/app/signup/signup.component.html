@@ -4,12 +4,14 @@
     <div class="row justify-content-md-center">
             
         <div class="col-md-4">
-            <img class="user-avatar" src="assets/images/logo.jpg" width="150px" />
-            <h1>Quiz Application</h1>
+            <!-- <img class="user-avatar" src="assets/images/logo.jpg" width="150px" /> -->
+            <h3>CSI St.Matthew's Church, Porur</h3>
+            <h4>Youth Fellowship</h4>
+            <h4>Bible Quiz</h4>
             <form role="form" ngForm #f = "ngForm" (ngSubmit) = "Submit(f)" autocomplete="off">
                 <div class="form-content" ngModelGroup ="RegisterForm" #registerForm = "ngModelGroup">
                   <div class="form-group">
-                    <div class  = "form-group alert alert-success" *ngIf = "RegistrationStatus == 'Success'">Registration successful!. You will be redirected to Login page</div>
+                    <div class  = "form-group alert alert-success" *ngIf = "RegistrationStatus == 'Success'">Registration Successful!.</div>
                     <div class  = "form-group alert alert-warning" *ngIf = "RegistrationStatus == 'UserExists'">Warning! This user already exists in database!</div>
                   
                     <!-- <br> -->
@@ -29,29 +31,27 @@
                     <!-- <label for= "MobileNumber">Mobile Number (Without spaces): </label> -->
                     <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
                     <input ngModel class = "form-control input-underline input-lg" id="MobileNumber" name="MobileNumber"  type="text"
-                    placeholder="Mobile Number" maxlength="10" minlength="10" required #MobileNumber = "ngModel" [pattern] = "MobileNumberPattern"/>
+                    placeholder="Mobile Number" maxlength="10"  minlength = "8" maxlength="15" required #MobileNumber = "ngModel" [pattern] = "MobileNumberPattern"/>
                     <div class="alert alert-danger" *ngIf = "!MobileNumber.valid && MobileNumber.touched">
                       <div *ngIf="MobileNumber.errors.required">Mobile Number is required</div>
-                      <div *ngIf="MobileNumber.errors.minlength">Should be a valid 10 digit number</div>
+                      <div *ngIf="MobileNumber.errors.minlength">Should be a valid 8 to 15 digit number</div>
                       <!-- <div *ngIf="MobileNumber.errors.max">Mobile Number is required</div> -->
-                      <div *ngIf="MobileNumber.errors.maxlength">Should be a valid 10 digit number</div>
-                      <div *ngIf="MobileNumber.errors.pattern">Should be a valid mobile number</div>
+                      <div *ngIf="MobileNumber.errors.maxlength">Should be a valid 8 - 15 digit number</div>
+                      <div *ngIf="MobileNumber.errors.pattern">Should be a valid mobile number(no space/special characters)</div>
                     </div> 
                 </div>        
                 
-    
+<!--     
                 <div class="form-group">
-                  <!-- <label for= "Email">Email: </label> -->
-                  <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
                   <input ngModel class = "form-control input-underline input-lg" id="Email" name="Email"  type="text"
-                    placeholder="Email Address" minlength = "4" required #EmailAddress = "ngModel"
+                    placeholder="Email Address" minlength = "4" #EmailAddress = "ngModel"
                     [pattern] = "EmailPattern"/>
                   <div class="alert alert-danger" *ngIf = "!EmailAddress.valid && EmailAddress.touched">
                     <div *ngIf="EmailAddress.errors.required">Email Address is required</div>
                     <div *ngIf="EmailAddress.errors.minlength">Minimum lenght is 4</div>
                     <div *ngIf="EmailAddress.errors.pattern">Not a valid Email Address</div>
                   </div> 
-                </div>
+                </div> -->
     
                 <div class="form-group">
                   <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
@@ -69,7 +69,7 @@
                     <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> -->
                     <!-- <label for= "ConfirmPassword">Confirm Password: </label> -->
                     <input  class = "form-control input-underline input-lg" id="ConfirmPwd" name="ConfirmPwd" required
-                      placeholder="Password"  type = "password" minlength = "4" ngModel  
+                      placeholder="Confirm Password"  type = "password" minlength = "4" ngModel  
                       #CnfrmPassword = "ngModel" />
                     <div class="alert alert-danger" *ngIf = "!CnfrmPassword.valid && CnfrmPassword.touched">
                         <div *ngIf="CnfrmPassword.errors.required">Password is required</div>
@@ -83,8 +83,8 @@
                     <!-- <div class = "row"> -->
                       <!-- <div class="col-4"> -->
                         <button class="btn rounded-btn" [disabled] = "!f.valid || Password.value!==CnfrmPassword.value">Sign Up</button> 
-                        &nbsp;
-                        <a class="btn rounded-btn" [routerLink]="['/login']">Existing User?</a> 
+                        <!-- &nbsp; -->
+                        <!-- <a class="btn rounded-btn" [routerLink]="['/login']">Existing User?</a>  -->
                         <!-- <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a> -->
                       <!-- </div> -->
                       <!-- <div class="col-2"> -->

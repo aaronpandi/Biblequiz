@@ -19,7 +19,9 @@ export class SignupComponent implements OnInit {
   // Approuter: Routes;
   // EmailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   EmailPattern ="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$";
-  MobileNumberPattern = "^[6-9][0-9]{9}$";
+  // MobileNumberPattern = "^[6-9][0-9]{9}$";
+  MobileNumberPattern = "^[0-9]*$";
+  // NamePattern="[A-Za-z]$";
   constructor(private ds: QuizServiceService, private toastrService: ToastrService, private route: Router) { }
   
   loginDetail: LoginDetails;
@@ -34,26 +36,29 @@ export class SignupComponent implements OnInit {
 
     this.loginDetail = 
      {
-      UserName: f.value.RegisterForm.Email,
+      UserName: f.value.RegisterForm.MobileNumber,
       password: f.value.RegisterForm.Pwd,
       PersonName: f.value.RegisterForm.PersonName,
       MobileNumber: f.value.RegisterForm.MobileNumber
     };
-  
+    // console.log(f.value.RegisterForm);
     // console.log(this.loginDetail);
     this.ds.AddNewUser (this.loginDetail).subscribe (
       (data) => {
-        console.log(data);
+        // console.log(data);
       if (data.Module == "NewRegistration" && data.IsSuccess == true)
       {
         // console.log(data);
         this.RegistrationStatus = "Success";
+        // f.value.RegisterForm.MobileNumber ="";
+        // f.value  ="";
+        // registerForm="";
         // console.log("done");
-        this.toastrService.success('You','Success');
+        // this.toastrService.success('You','Success');
         setTimeout( () => 
           {
               this.RegistrationStatus= "";
-              this.route.navigate(['/login']);
+              // this.route.navigate(['/login']);
           }, 5000);  
         // this.Approuter.map('/login');
         
@@ -62,12 +67,14 @@ export class SignupComponent implements OnInit {
       {
         this.RegistrationStatus = "UserExists";
         // console.log("done");
-        this.toastrService.warning('You','Success');
+        // this.toastrService.warning('You','Success');
         setTimeout( () => {this.RegistrationStatus= ""}, 5000);  
 
       }
 
-        }, (error) => {console.log(error);}
+        }, (error) => {
+          // console.log(error);
+        }
     )
     
     // console.log(this.loginDetail);

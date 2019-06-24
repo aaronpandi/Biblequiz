@@ -48,7 +48,7 @@ import {DisclaimerModule}  from './disclaimer/disclaimer.module';
     // {timeOut: 10000,positionClass: 'toast-bottom-right'} 
     ToastContainerModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(Quizroutes, {enableTracing: true}),
+    RouterModule.forRoot(Quizroutes),
     HomeModule,
     LanguageTranslationModule,
     AppRoutingModule,

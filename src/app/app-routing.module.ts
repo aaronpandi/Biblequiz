@@ -25,13 +25,15 @@ export const Quizroutes: Routes = [
   // {path: "home", loadChildren:"./home/home.module#HomeModule"},
   // {path:"Navigation", component: TestScreenComponent },
   {path:"login", loadChildren:"./login/login.module#LoginModule" },
-  // {path:"signup", loadChildren:"./signup/signup.module#SignupModule" },
+  {path:"signup", loadChildren:"./signup/signup.module#SignupModule" },
   {path:"disclaimer", loadChildren:"./disclaimer/disclaimer.module#DisclaimerModule" , canActivate: [AuthGuard]},
   { path: "quiz"
     ,loadChildren:"./quiz/quiz.module#QuizModule"
     ,canActivate: [AuthGuard]
     ,canDeactivate: [AuthGuardCanDeactivateService]
   },
+  {path:"logout", loadChildren:"./logout/logout.module#LogoutModule" },
+  
   // {path: "login", component: LoginComponent},
   // {path: "header", component: HeaderComponent},
   // {path: "sidebar", component: SidebarComponent},

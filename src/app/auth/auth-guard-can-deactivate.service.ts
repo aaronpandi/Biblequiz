@@ -10,11 +10,14 @@ export class AuthGuardCanDeactivateService implements CanDeactivate<QuizComponen
   constructor(private quizservice: QuizServiceService) { }
   canDeactivate(component: QuizComponent):  boolean {
     // this.quizservice.isQuizStarted = true;
-    if (this.quizservice.isQuizStarted == true && this.quizservice.seconds >0 )
+    if (this.quizservice.isQuizStarted == true && this.quizservice.seconds >0)
     {
       // console.log("Are you sure, you want to submit");
-      
-      return confirm("Are you sure, you want to submit the quiz?");
+      if  (confirm("Are you sure, you want to submit the quiz?") == true)
+      {
+          this.quizservice.userBackButtonClick = true;
+      }
+      return false;
     }
     else
       return true;

@@ -39,148 +39,203 @@ export class QuizComponent implements OnInit {
   showQuizSection:boolean = true;
   attemptsCompletedMessage: string = "You have already completed your attempts";
   userSubmittedFlag: boolean = false;
-
+  userAttemptsForSubGroups = [];
 
   // NumberOfCorrectQuestions: number=0;
 
-  constructor(public quizservice: QuizServiceService, private quizrouter: Router) { console.log("test"); }
+  constructor(public quizservice: QuizServiceService, private quizrouter: Router) {  }
 
   ngOnInit() {
-    console.log("att");
-    console.log(this.quizservice.allowedAttempts);
-    console.log(this.quizservice.completedAttempts);
-    console.log(localStorage.getItem("isQuizStarted"));
-    if (localStorage.getItem("isQuizStarted")=="true")
-    {
-      this.quizservice.isQuizStarted = true;
-    }
-    
-    this.quizservice.allowedAttempts = parseInt(localStorage.getItem("allowedAttempts"));
-    this.quizservice.completedAttempts = parseInt(localStorage.getItem("completedAttempts"));
-    if (this.quizservice.allowedAttempts > this.quizservice.completedAttempts)
-    {
-        // clearInterval(this.quizservice.timer);
-        // console.log (parseInt(localStorage.getItem("seconds")));
-        // console.log("ngOnIt");
-        // console.log(JSON.parse(localStorage.getItem("QnsAns")));
-        // console.log(JSON.parse(localStorage.getItem("QnsProgress")));
-        // console.log(this.quizservice.timeAllocated + ' - timer');
-        if (parseInt(localStorage.getItem("seconds")) > 0) {
-          console.log("ngOnIt-If");
-          this.ProgressBarClicked = "All";
-          this.quizservice.seconds = parseInt(localStorage.getItem("seconds"));
-          this.quizservice.qnProgress = 0; //parseInt(localStorage.getItem("QnsProgress"));
-          this.quizservice.timeAllocated = parseInt(localStorage.getItem("TimeAllocated"));
-          // console.log(this.quizservice.qns);
-          // console.log(JSON.parse(localStorage.getItem("QnsAns")));
-          this.quizservice.qns = JSON.parse(localStorage.getItem("QnsAns"));
-          this.quizservice.CorrectAnswers = JSON.parse(localStorage.getItem("AnswersFinalOutputForDB"));
-          // localStorage.setItem('AnswersFinalOutputForDB', JSON.stringify(this.quizservice.CorrectAnswers));
-          // this.quizservice.qns = JSON.parse(localStorage.getItem("QnsAns"));
-          this.NumberofQuestions = this.quizservice.qns.length;
-          this.PopulateQnSplitsArrays("All");
-          // this.NoOfQnsAnswered = parseInt(localStorage.getItem("NoOfQnsAnswered"));
-          // this.NoOfQnsToBeRevisited = parseInt(localStorage.getItem("NoOfQnsToBeRevisited"));
-          // this.QnsToBeRevisited = JSON.parse(localStorage.getItem("QnsToBeRevisited"));
-          // this.quizservice.qns.forEach((index, array) => {
-          //   if (index.Revisit == true ) 
-          //   {
-          //     this.QnsToBeRevisited.push();
-          //   }
-          // })
-          // this.QnsToBeRevisited.sort((a,b)=> {return a-b;});
-          // console.log("test-AAron");
-          console.log(this.QnsToBeRevisited);
-          this.RefreshProgressBar();
-          this.SetRevisitFlagStyleColor();
-          // this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer;
-          if (this.quizservice.qns[this.quizservice.qnProgress].answer !== undefined && this.quizservice.qns[this.quizservice.qnProgress].answer !== null) {
-            // this.quizservice.qnProgress ++; 
-            this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer - 1;
-          }
-          // console.log(this.quizservice.qns);
-          // console.log(this.quizservice.qns[this.quizservice.qnProgress].answer)
-          if (this.quizservice.seconds <= 0)
-          {
-            // this.quizservice.isQuizStarted = false;
-            this.quizrouter.navigate(["/result"]);
-          }
-            
-          else
-          {
-            // this.quizservice.isQuizStarted = true;
-            this.startTimer();
-          }
-            
-        }
-        else {
-          // this.quizservice.isQuizStarted = true;
-          console.log("ngOnIt-else");
-          this.quizservice.seconds = parseInt(localStorage.getItem("TimeAllocated"));
-          this.quizservice.qnProgress = 0;
-          this.PreviousButtonEnable = false;
-          this.ProgressBarUnAnsweredPct = 100;
-          localStorage.setItem('QnsProgress', this.quizservice.qnProgress.toString());
-          localStorage.setItem('seconds', this.quizservice.seconds.toString());
-          this.quizservice.getQuestions(this.quizservice.ChosenSubGroupId).subscribe(
-            (data: any) => {
-              this.NumberofQuestions = 0;
-              this.quizservice.qns = data;
-              localStorage.setItem('QnsAns', JSON.stringify(this.quizservice.qns));
-              this.NumberofQuestions = this.quizservice.qns.length;
-              console.log(this.quizservice.qns);
-              // console.log(this.quizservice.qns[0].QuestionDescr);
-              this.startTimer();
-              console.log("timer test");
-              // console.log(this.quizservice.qns);
-            },(error: any) => {},() => {
-              // console.log("Next call to DB");    
-              // this.Answers = this.quizservice.qns.map(function (AnswersOption) {
-              //   return (
-              //     {
-              //       QuestionId: AnswersOption.QuestionId
-              //     });
-              //   });
-              // this.AnswersFinalOutputForDB.push(this.quizservice.ChosenSubGroupId, this.Answers);
-              // this.quizservice.getAnswersForQuestions(this.AnswersFinalOutputForDB).subscribe(
-              // (data: any) => {
-              //   this.quizservice.CorrectAnswers = [];
-              //   this.quizservice.CorrectAnswers = data;
-              //   localStorage.setItem('AnswersFinalOutputForDB', JSON.stringify(this.quizservice.CorrectAnswers));
-              // });        
-
-            }
-            )
-            
-
-
-        }
-        if (this.NumberofQuestions == 1) {
-          this.PreviousButtonEnable = false;
-          this.NextButtonEnable = false;
-        }
-        else if (this.quizservice.qnProgress == 0) {
-          this.PreviousButtonEnable = false;
-          this.NextButtonEnable = true;
-        }
-        else if (this.quizservice.qnProgress > 0 && this.quizservice.qnProgress < this.NumberofQuestions - 1) {
-          this.PreviousButtonEnable = true;
-          this.NextButtonEnable = true;
-        }
-        else if (this.quizservice.qnProgress > 0) {
-          this.PreviousButtonEnable = true;
-          this.NextButtonEnable = false;
-        }
-
+      // console.log("att");
+      // console.log(this.quizservice.allowedAttempts);
+      // console.log(this.quizservice.completedAttempts);
+      // console.log(localStorage.getItem("isQuizStarted"));
+      // console.log(this.quizservice.LoggedInUser);
+      // localStorage.clear();
+      // this.userSubmittedFlag = false;
+      this.quizservice.userBackButtonClick = false;
+      this.quizservice.LoggedInUser = localStorage.getItem('userLoggedIn');
+      this.quizservice.ChosenSubGroupId = parseInt(localStorage.getItem('ChosenSubGroupId'));
+      if (localStorage.getItem('isQuizStarted') == "true")
+      {
+        this.quizservice.isQuizStarted = true;
       }
-    else
-    {
-      this.showQuizSection = false;
-      this.quizservice.isQuizStarted = false;
+      else
+      {
+        this.quizservice.isQuizStarted = false;
+      }
+      
+      // console.log (this.quizservice.LoggedInUser);
+      // console.log (this.quizservice.ChosenSubGroupId);
+      // console.log (this.quizservice.isQuizStarted);
+      // this.quizrouter.navigate(["/blank-page"]);
+      if (this.quizservice.LoggedInUser !== "" && this.quizservice.ChosenSubGroupId >0 && this.quizservice.isQuizStarted == true)
+      {
 
-    }
+        // console.log("post If");
+        // console.log(localStorage.getItem("isQuizStarted"));
+        // console.log(parseInt(localStorage.getItem("allowedAttempts")));
+        // console.log(parseInt(localStorage.getItem("completedAttempts")));
+        if (localStorage.getItem("isQuizStarted")=="true")
+        {
+          this.quizservice.isQuizStarted = true;
+        }
+        
+        this.quizservice.allowedAttempts = parseInt(localStorage.getItem("allowedAttempts"));
+        this.quizservice.completedAttempts = parseInt(localStorage.getItem("completedAttempts"));
+        this.quizservice.passPercentage = parseInt(localStorage.getItem("passPercentage"));
+        this.quizservice.ChosenQnLanguageNbr = parseInt(localStorage.getItem("ChosenQnLanguageNbr"));
+        
+        if (this.quizservice.allowedAttempts > this.quizservice.completedAttempts)
+        {
+            // clearInterval(this.quizservice.timer);
+            // console.log (parseInt(localStorage.getItem("seconds")));
+            // console.log("ngOnIt");
+            // console.log(JSON.parse(localStorage.getItem("QnsAns")));
+            // console.log(JSON.parse(localStorage.getItem("QnsProgress")));
+            // console.log(this.quizservice.timeAllocated + ' - timer');
+            if (parseInt(localStorage.getItem("seconds")) > 0) {
+              // console.log("ngOnIt-If");
+              this.ProgressBarClicked = "All";
+              this.quizservice.seconds = parseInt(localStorage.getItem("seconds"));
+              this.quizservice.qnProgress = 0; //parseInt(localStorage.getItem("QnsProgress"));
+              this.quizservice.timeAllocated = parseInt(localStorage.getItem("TimeAllocated"));
+              // console.log(this.quizservice.qns);
+              // console.log(JSON.parse(localStorage.getItem("QnsAns")));
+              this.quizservice.qns = JSON.parse(localStorage.getItem("QnsAns"));
+              this.quizservice.CorrectAnswers = JSON.parse(localStorage.getItem("AnswersFinalOutputForDB"));
+              // localStorage.setItem('AnswersFinalOutputForDB', JSON.stringify(this.quizservice.CorrectAnswers));
+              // this.quizservice.qns = JSON.parse(localStorage.getItem("QnsAns"));
+              this.NumberofQuestions = this.quizservice.qns.length;
+              this.PopulateQnSplitsArrays("All");
+              // this.NoOfQnsAnswered = parseInt(localStorage.getItem("NoOfQnsAnswered"));
+              // this.NoOfQnsToBeRevisited = parseInt(localStorage.getItem("NoOfQnsToBeRevisited"));
+              // this.QnsToBeRevisited = JSON.parse(localStorage.getItem("QnsToBeRevisited"));
+              // this.quizservice.qns.forEach((index, array) => {
+              //   if (index.Revisit == true ) 
+              //   {
+              //     this.QnsToBeRevisited.push();
+              //   }
+              // })
+              // this.QnsToBeRevisited.sort((a,b)=> {return a-b;});
+              // console.log("test-AAron");
+              // console.log(this.QnsToBeRevisited);
+              this.RefreshProgressBar();
+              this.SetRevisitFlagStyleColor();
+              // this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer;
+              if (this.quizservice.qns[this.quizservice.qnProgress].answer !== undefined && this.quizservice.qns[this.quizservice.qnProgress].answer !== null) {
+                // this.quizservice.qnProgress ++; 
+                this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer - 1;
+              }
+              // console.log(this.quizservice.qns);
+              // console.log(this.quizservice.qns[this.quizservice.qnProgress].answer)
+              if (this.quizservice.seconds <= 0)
+              {
+                // this.quizservice.isQuizStarted = false;
+                this.quizrouter.navigate(["/result"]);
+              }
+                
+              else
+              {
+                // this.quizservice.isQuizStarted = true;
+                this.startTimer();
+              }
+                
+            }
+            else {
+              // this.quizservice.isQuizStarted = true;
+              // console.log("ngOnIt-else");
+              this.quizservice.seconds = parseInt(localStorage.getItem("TimeAllocated"));
+              this.quizservice.qnProgress = 0;
+              this.PreviousButtonEnable = false;
+              this.ProgressBarUnAnsweredPct = 100;
+              localStorage.setItem('QnsProgress', this.quizservice.qnProgress.toString());
+              localStorage.setItem('seconds', this.quizservice.seconds.toString());
+              this.quizservice.getQuestions(this.quizservice.ChosenSubGroupId).subscribe(
+                (data: any) => {
+                  this.NumberofQuestions = 0;
+                  this.quizservice.qns = data;
+                  localStorage.setItem('QnsAns', JSON.stringify(this.quizservice.qns));
+                  this.NumberofQuestions = this.quizservice.qns.length;
+                  // console.log(this.quizservice.qns);
+                  // console.log(this.quizservice.qns[0].QuestionDescr);
+                  this.startTimer();
+                  // console.log("timer test");
+                  // console.log(this.quizservice.qns);
+                },(error: any) => {},() => {
+                  // console.log("Next call to DB");    
+                  // this.Answers = this.quizservice.qns.map(function (AnswersOption) {
+                  //   return (
+                  //     {
+                  //       QuestionId: AnswersOption.QuestionId
+                  //     });
+                  //   });
+                  // this.AnswersFinalOutputForDB.push(this.quizservice.ChosenSubGroupId, this.Answers);
+                  // this.quizservice.getAnswersForQuestions(this.AnswersFinalOutputForDB).subscribe(
+                  // (data: any) => {
+                  //   this.quizservice.CorrectAnswers = [];
+                  //   this.quizservice.CorrectAnswers = data;
+                  //   localStorage.setItem('AnswersFinalOutputForDB', JSON.stringify(this.quizservice.CorrectAnswers));
+                  // });        
+    
+                }
+                )
+                
+    
+    
+            }
+            if (this.NumberofQuestions == 1) {
+              this.PreviousButtonEnable = false;
+              this.NextButtonEnable = false;
+            }
+            else if (this.quizservice.qnProgress == 0) {
+              this.PreviousButtonEnable = false;
+              this.NextButtonEnable = true;
+            }
+            else if (this.quizservice.qnProgress > 0 && this.quizservice.qnProgress < this.NumberofQuestions - 1) {
+              this.PreviousButtonEnable = true;
+              this.NextButtonEnable = true;
+            }
+            else if (this.quizservice.qnProgress > 0) {
+              this.PreviousButtonEnable = true;
+              this.NextButtonEnable = false;
+            }
+    
+          }
+        else
+        {
+          this.showQuizSection = false;
+          this.quizservice.isQuizStarted = false;
+    
+        }
+      }
+      else
+      {
+        if (this.quizservice.LoggedInUser == "" || this.quizservice.ChosenSubGroupId ==0 )
+          {
+            localStorage.clear();
+            this.quizservice.isQuizStarted = false;
+            this.quizrouter.navigate(["/logout"]);
 
-  }
+          }
+        else if (this.quizservice.isQuizStarted == false)
+          {
+            // console.log("here i am");
+            // localStorage.clear();
+            // this.quizservice.isQuizStarted = false;
+            this.quizrouter.navigate(["/form"]);
+          }
+        else
+          {
+            localStorage.clear();
+            this.quizservice.isQuizStarted = false;
+            this.quizrouter.navigate(["/logout"]);
+    
+          }
+        // console.log("Else PPPart");
+      }
+      // console.log("End If");
+}
 
 
 
@@ -192,13 +247,13 @@ export class QuizComponent implements OnInit {
         // console.log(JSON.stringify(this.quizservice.seconds.toString()));
         localStorage.setItem('seconds', this.quizservice.seconds.toString());
 
-        console.log(localStorage.getItem("seconds"));
-        console.log(" Timer Value - " + this.quizservice.timer);
+        // console.log(localStorage.getItem("seconds"));
+        // console.log(" Timer Value - " + this.quizservice.timer);
         // console.log('seconds' +this.quizservice.seconds);
 
       }
       else {
-        console.log("Else Part");
+        // console.log("Else Part");
         clearInterval(this.quizservice.timer);
         // this.ElapsedTimeInSeconds = this.quizservice.seconds
         // this.quizservice.
@@ -214,7 +269,7 @@ export class QuizComponent implements OnInit {
   }
 
   PreviousQnClick() {
-    console.log(this.NextButtonEnable);
+    // console.log(this.NextButtonEnable);
     if (this.ChoosenOptionId == null)
       this.quizservice.qns[this.quizservice.qnProgress].answer = this.ChoosenOptionId;
 
@@ -249,10 +304,10 @@ export class QuizComponent implements OnInit {
       tmpQnsPrgsNbr = this.tmpQnsProgressArray.find(item => item < this.quizservice.qnProgress);
       this.tmpQnsProgressArray.reverse();
       tmpQnsPrgsIndex = this.tmpQnsProgressArray.indexOf(tmpQnsPrgsNbr);
-      console.log("test- Aaron");
-      console.log(this.tmpQnsProgressArray);
+      // console.log("test- Aaron");
+      // console.log(this.tmpQnsProgressArray);
       // console.log(this.RevisitedQnProgressNbr);
-      console.log(tmpQnsPrgsIndex);
+      // console.log(tmpQnsPrgsIndex);
       if (tmpQnsPrgsIndex + 1 == this.tmpQnsProgressArray.length) {
         this.NextButtonEnable = false;
       }
@@ -260,8 +315,8 @@ export class QuizComponent implements OnInit {
         this.PreviousButtonEnable = false;
       }
       this.quizservice.qnProgress = this.tmpQnsProgressArray[tmpQnsPrgsIndex];
-      console.log(this.quizservice.qnProgress);
-      console.log(this.quizservice.qns[this.quizservice.qnProgress]);
+      // console.log(this.quizservice.qnProgress);
+      // console.log(this.quizservice.qns[this.quizservice.qnProgress]);
 
     }
     this.ChoosenOptionId = null;
@@ -276,8 +331,8 @@ export class QuizComponent implements OnInit {
   }
 
   NextQnClick() {
-    console.log(this.PreviousButtonEnable);
-    console.log("NextClick Progress - " + this.quizservice.qnProgress);
+    // console.log(this.PreviousButtonEnable);
+    // console.log("NextClick Progress - " + this.quizservice.qnProgress);
     // console.log(this.quizservice.timer);
     if (this.ChoosenOptionId == null)
       this.quizservice.qns[this.quizservice.qnProgress].answer = this.ChoosenOptionId;
@@ -289,7 +344,7 @@ export class QuizComponent implements OnInit {
 
     if (this.ProgressBarClicked == "All") {
       if (this.quizservice.qnProgress + 1 < this.NumberofQuestions) {
-        console.log("Next Click - Inside - " + this.quizservice.qnProgress);
+        // console.log("Next Click - Inside - " + this.quizservice.qnProgress);
         if (this.quizservice.qnProgress + 2 == this.NumberofQuestions) {
           this.NextButtonEnable = false;
         }
@@ -316,9 +371,9 @@ export class QuizComponent implements OnInit {
 
       // this.RevisitedQnProgressNbr = this.QnsToBeRevisited.findIndex(item => item > this.quizservice.qnProgress);
       tmpQnsPrgsIndex = this.tmpQnsProgressArray.findIndex(item => item > this.quizservice.qnProgress);
-      console.log(this.tmpQnsProgressArray);
+      // console.log(this.tmpQnsProgressArray);
       // console.log(this.RevisitedQnProgressNbr);
-      console.log(tmpQnsPrgsIndex);
+      // console.log(tmpQnsPrgsIndex);
       if (tmpQnsPrgsIndex + 1 == this.tmpQnsProgressArray.length) {
         this.NextButtonEnable = false;
       }
@@ -326,8 +381,8 @@ export class QuizComponent implements OnInit {
         this.PreviousButtonEnable = false;
       }
       this.quizservice.qnProgress = this.tmpQnsProgressArray[tmpQnsPrgsIndex];
-      console.log(this.quizservice.qnProgress);
-      console.log(this.quizservice.qns[this.quizservice.qnProgress]);
+      // console.log(this.quizservice.qnProgress);
+      // console.log(this.quizservice.qns[this.quizservice.qnProgress]);
       // if (this.RevisitedQnProgressNbr +2 <= this.QnsToBeRevisited.length)
       // {
       //   if (this.RevisitedQnProgressNbr +2 == this.QnsToBeRevisited.length)
@@ -395,10 +450,29 @@ export class QuizComponent implements OnInit {
   //   console.log(this.NoOfQnsAnswered);
   // }
 
+  ngOnChanges()
+  {
+    // console.log("On Changes is called");
+
+  }
+  ngDoCheck()
+  {
+    // console.log("DoCheck is called");
+        
+        if (this.quizservice.userBackButtonClick == true)
+        {
+          this.userSubmittedFlag = true;
+          this.SubmitAnswers();
+        } 
+          
+
+  }
+
   ngOnDestroy()
   {
-    console.log("Ng Destroy Activated");
-    this.SubmitAnswers();
+    // console.log("Ng Destroy Activated");
+
+    
     // if (this.quizserviceisQuizStarted == true)
     // {
     //   if (confirm("Are you sure, you want to submit the quiz?") == true)
@@ -411,12 +485,14 @@ export class QuizComponent implements OnInit {
   }
 
   SubmitAnswers() {
+    // console.log(this.AnswerSubmittedStatus);
+    // console.log(this.quizservice.isQuizStarted);
     if (!this.AnswerSubmittedStatus && this.quizservice.isQuizStarted) {
-      console.log("Submission Starts");
+      // console.log("Submission Starts");
       this.AnswerSubmittedStatus = true;
       this.totalMarks = 0;
       // this
-      this.quizservice.isQuizStarted = false;
+      // this.quizservice.isQuizStarted = false;
       this.AnswersParam2 = {
         UserId: this.quizservice.LoggedInUser,
         SubGroupId: this.quizservice.ChosenSubGroupId,
@@ -438,7 +514,8 @@ export class QuizComponent implements OnInit {
       })
 
       this.AnswersFinalOutputForDB.push(this.AnswersParam2, this.Answers);
-      console.log(this.AnswersFinalOutputForDB);
+      // console.log("Test2");
+      // console.log(this.AnswersFinalOutputForDB);
       this.quizservice.getAnswersForQuestions(this.AnswersFinalOutputForDB).subscribe(
         (data: any) => {
           clearInterval(this.quizservice.timer);
@@ -446,12 +523,13 @@ export class QuizComponent implements OnInit {
           this.quizservice.CorrectAnswers = data;
           this.quizservice.FinalResult = this.quizservice.qns.map(
             (questions) => {
-              console.log('Aaron');
-              console.log(questions);
+              // console.log('Aaron');
+              // console.log(questions);
               this.totalMarks = this.totalMarks +  questions.MarksAllocated;
 
               this.AnswerStatus = "";
               this.MarksAllocated = 0;
+              // console.log(this.quizservice.CorrectAnswers);
               if (this.quizservice.CorrectAnswers.find(answer => answer.QuestionId == questions.QuestionId).AnswerOptionNbrs == questions.answer) {
                 this.AnswerStatus = "Correct";
                 this.MarksAllocated = this.quizservice.CorrectAnswers.find(answer => answer.QuestionId ==
@@ -486,7 +564,7 @@ export class QuizComponent implements OnInit {
           // this.quizservice.FinalResult =  this.QuizResult;
         },
         (error: any) => {
-          console.log("error"); 
+          // console.log("error"); 
           },
         () => {
           this.quizservice.FinalMarkScored = 0;
@@ -500,6 +578,8 @@ export class QuizComponent implements OnInit {
           // console.log(this.quizservice.passPercentage);
           // console.log(this.quizservice.percentageScored);
           this.quizservice.percentageScored =   (this.quizservice.FinalMarkScored/this.totalMarks) *100;       
+          // console.log(this.quizservice.percentageScored);
+          // console.log(this.quizservice.passPercentage);
           if (this.quizservice.percentageScored >= this.quizservice.passPercentage)
             this.quizservice.ResultStatus = true;
           else
@@ -511,28 +591,53 @@ export class QuizComponent implements OnInit {
           // this.quizservice.SubmitAnswersIntoDb(this.AnswersFinalOutput).subscribe(
           //   (data: any) => { 
           //   });
-          console.log(this.AnswersFinalOutputForDB);
+          // console.log(this.AnswersFinalOutputForDB);
           // this.quizrouter.navigate(['/result']);
           // this.quizrouter.navigate(["/result",1]);
 
-          this.quizservice.SubmitAnswersIntoDb(this.AnswersFinalOutputForDB).subscribe(
+          this.quizservice.getuserAttemptsForSubGroup(this.quizservice.ChosenSubGroupId, this.quizservice.LoggedInUser).subscribe(
             (data: any) => {
-              console.log("DB Insert!");
-              console.log(data);
-            },
-            (error) => {},
-            ()=> {
-              this.quizservice.completedAttempts = this.quizservice.completedAttempts +1;
-              localStorage.setItem('completedAttempts', this.quizservice.completedAttempts.toString());
-              console.log(this.userSubmittedFlag);
-              if (this.userSubmittedFlag == true)
+              this.userAttemptsForSubGroups = [];
+              this.userAttemptsForSubGroups = data;    
+              // console.log(this.userAttemptsForSubGroups)
+              // console.log(this.resultSetCount);
+           }, (error) =>{},()=>
+           {
+              if ( this.userAttemptsForSubGroups[0].NoOfAttemptsAllowed>this.userAttemptsForSubGroups[0].UserAttempts)
               {
-                this.quizrouter.navigate(["/result",1]);
+                this.quizservice.SubmitAnswersIntoDb(this.AnswersFinalOutputForDB).subscribe(
+                  (data: any) => {
+                    // console.log("DB Insert!");
+                    // console.log(data);
+                  },
+                  (error) => {},
+                  ()=> {
+                    this.quizservice.completedAttempts = this.quizservice.completedAttempts +1;
+                    localStorage.setItem('completedAttempts', this.quizservice.completedAttempts.toString());
+                    // console.log(this.userSubmittedFlag);
+                    if (this.userSubmittedFlag == true)
+                    {
+                      this.quizrouter.navigate(["/result",1]);
+                      this.quizservice.isQuizStarted = false;
+                      localStorage.setItem('isQuizStarted', this.quizservice.isQuizStarted.toString());
+                    }
+                    
+                  })                
               }
-              
-            }
-            
-            )
+              else
+              {
+                  this.quizservice.completedAttempts = this.userAttemptsForSubGroups[0].UserAttempts;
+                  localStorage.setItem('completedAttempts', this.quizservice.completedAttempts.toString());
+                  this.showQuizSection = false;
+                  this.quizservice.isQuizStarted = false;
+                  localStorage.setItem('isQuizStarted', this.quizservice.isQuizStarted.toString());
+
+              }
+
+           }
+           
+          );
+
         }
       )
       // console.log(this.quizservice.CorrectAnswers);
@@ -555,8 +660,10 @@ export class QuizComponent implements OnInit {
 
   PopulateQnSplitsArrays(execmode: string) {
     // console.log(this.quizservice.qns[this.quizservice.qnProgress].Revisit);
+    
     if (execmode == "Revisit" || execmode == "All") {
       // console.log("test-1");
+      // console.log(execmode);
       let tmpvar: number = 0;
       this.QnsToBeRevisited = [];
       this.quizservice.qns.forEach((item, index) => {
@@ -565,8 +672,11 @@ export class QuizComponent implements OnInit {
           tmpvar++
         }
       })
+
       this.NoOfQnsToBeRevisited = tmpvar;
       this.QnsToBeRevisited.sort((a, b) => { return a - b; });
+      // console.log(this.QnsToBeRevisited);
+      // console.log(this.NoOfQnsToBeRevisited);
       // localStorage.setItem('NoOfQnsToBeRevisited', this.NoOfQnsToBeRevisited.toString());
       // console.log(this.QnsToBeRevisited);
       // console.log(this.NoOfQnsToBeRevisited);
@@ -574,6 +684,7 @@ export class QuizComponent implements OnInit {
     }
 
     if (execmode == "Answered" || execmode == "All") {
+      // console.log(execmode);
       let tmpvar: number = 0;
       this.QnsAnswered = [];
       this.QnsUnAnswered = [];
@@ -623,8 +734,11 @@ export class QuizComponent implements OnInit {
 
   RevisitFlag_Click() {
     // console.log(this.RevisitFlagStyleColor);
+    // console.log(this.RevisitFlagStyleColor);
     if (this.RevisitFlagStyleColor == "gray") {
+      // console.log(this.quizservice.qnProgress);
       this.quizservice.qns[this.quizservice.qnProgress].Revisit = true;
+      
       // this.NoOfQnsToBeRevisited++;
       // if (this.QnsToBeRevisited.indexOf(this.quizservice.qnProgress)  == -1)
       //   this.QnsToBeRevisited.push(this.quizservice.qnProgress);
@@ -633,7 +747,7 @@ export class QuizComponent implements OnInit {
       this.RevisitFlagStyleColor = "blue";
       // this.QnsToBeRevisited.sort((a,b)=>{return a-b;});
       // localStorage.setItem('QnsToBeRevisited', JSON.stringify(this.QnsToBeRevisited));
-      console.log(this.QnsToBeRevisited);
+      // console.log(this.QnsToBeRevisited);
 
     }
     else {
@@ -649,7 +763,7 @@ export class QuizComponent implements OnInit {
       this.RevisitFlagStyleColor = "gray";
       // this.QnsToBeRevisited.sort((a,b)=>{return a-b;});
       // localStorage.setItem('QnsToBeRevisited', JSON.stringify(this.QnsToBeRevisited));
-      console.log(this.QnsToBeRevisited);
+      // console.log(this.QnsToBeRevisited);
       // if (this.RevisitFlag ==true)
       // {
       //   this.RevisitedQnProgressNbr = this.tmpRevisitedQnProgressNbr;
@@ -675,34 +789,41 @@ export class QuizComponent implements OnInit {
     }
     this.RefreshProgressBar();
     this.ShowAllStyleVisibility = "visible";
-    console.log(this.QnsToBeRevisited);
+    // console.log(this.QnsToBeRevisited);
     // console.log(this.RevisitedQnProgressNbr);
 
   }
 
   UnAnsweredBtn_Click() {
-    this.ProgressBarClicked = "UnAnswered";
-    this.quizservice.qnProgress = this.QnsUnAnswered[0];
-    this.NextButtonEnable = false;
-    this.PreviousButtonEnable = false;
-    if (this.QnsUnAnswered.length > 1) {
-      this.NextButtonEnable = true;
+    if (this.QnsUnAnswered[0] !== undefined)
+    {
+      // console.log(this.quizservice.qns[this.quizservice.qnProgress]);
+      this.ProgressBarClicked = "UnAnswered";
+      this.quizservice.qnProgress = this.QnsUnAnswered[0];
+      this.NextButtonEnable = false;
+      this.PreviousButtonEnable = false;
+      if (this.QnsUnAnswered.length > 1) {
+        this.NextButtonEnable = true;
+      }
+      // console.log(this.quizservice.qns[this.quizservice.qnProgress]);
+      this.ChoosenOptionId = null;
+      // this.SetRevisitFlagStyleColor();
+      if (this.quizservice.qns[this.quizservice.qnProgress].answer !== undefined && this.quizservice.qns[this.quizservice.qnProgress].answer !== null) {
+        this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer - 1;
+      }
+      this.RefreshProgressBar();
+      this.ShowAllStyleVisibility = "visible";
+      // console.log(this.QnsToBeRevisited);
+      // console.log(this.RevisitedQnProgressNbr);
+      
     }
-    this.ChoosenOptionId = null;
-    this.SetRevisitFlagStyleColor();
-    if (this.quizservice.qns[this.quizservice.qnProgress].answer !== undefined && this.quizservice.qns[this.quizservice.qnProgress].answer !== null) {
-      this.ChoosenOptionId = this.quizservice.qns[this.quizservice.qnProgress].answer - 1;
-    }
-    this.RefreshProgressBar();
-    this.ShowAllStyleVisibility = "visible";
-    console.log(this.QnsToBeRevisited);
-    // console.log(this.RevisitedQnProgressNbr);
 
   }
 
 
 
   RevisitBtn_Click() {
+    // console.log("Revist button clicked");
     // console.log(this.quizservice.qns);
     // console.log(this.quizservice.qns[1].Revisit);
     this.ProgressBarClicked = "Revisit";
@@ -743,7 +864,7 @@ export class QuizComponent implements OnInit {
     this.RefreshProgressBar();
     // this.ShowAllStyleColor ="blue";
     this.ShowAllStyleVisibility = "visible";
-    console.log(this.QnsToBeRevisited);
+    // console.log(this.QnsToBeRevisited);
     // console.log(this.RevisitedQnProgressNbr);
 
   }
@@ -758,14 +879,22 @@ export class QuizComponent implements OnInit {
     if (this.quizservice.qnProgress == 0) {
       this.PreviousButtonEnable = false;
     }
-    console.log(this.quizservice.qnProgress);
-    console.log(this.NumberofQuestions);
+    // console.log(this.quizservice.qnProgress);
+    // console.log(this.NumberofQuestions);
     if (this.quizservice.qnProgress + 1 == this.NumberofQuestions) {
       this.NextButtonEnable = false;
     }
   }
 
   RefreshProgressBar(): void {
+    // console.log (this.ProgressBarAnsweredPct);
+    // console.log (this.ProgressBarUnAnsweredPct);
+    // console.log (this.ProgressBarRevisitedPct);
+    // console.log("Break");
+    // console.log (this.NoOfQnsAnswered);
+    // console.log (this.NumberofQuestions - this.NoOfQnsAnswered);
+    // console.log (this.NoOfQnsToBeRevisited);
+    
     if (this.ProgressBarClicked == "All") {
       this.ProgressBarAnsweredPct = ((this.NoOfQnsAnswered) / this.NumberofQuestions) * 100;
       this.ProgressBarUnAnsweredPct = ((this.NumberofQuestions - this.NoOfQnsAnswered) / this.NumberofQuestions) * 100;
@@ -792,6 +921,8 @@ export class QuizComponent implements OnInit {
 
 
   SetRevisitFlagStyleColor() {
+    // console.log("Check here");
+    // console.log (this.quizservice.qns[this.quizservice.qnProgress]);
     if (this.quizservice.qns[this.quizservice.qnProgress].Revisit !== undefined && this.quizservice.qns[this.quizservice.qnProgress].Revisit !== null && this.quizservice.qns[this.quizservice.qnProgress].Revisit)
     // if (this.quizservice.qns[this.quizservice.qnProgress].Revisit == true)
     {
@@ -801,7 +932,7 @@ export class QuizComponent implements OnInit {
       }
     }
     else {
-      this.RevisitFlagStyleColor = "gray";
+        this.RevisitFlagStyleColor = "gray";
     }
   }
 

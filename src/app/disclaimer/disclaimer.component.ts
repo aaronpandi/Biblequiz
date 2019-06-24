@@ -20,13 +20,13 @@ passPercentage: number;
     this.qnLanguageNumber = this.quizservice.ChosenQnLanguageNbr;
     this.timeAllocated = this.quizservice.timeAllocated;
     this.passPercentage = this.quizservice.passPercentage;
-    console.log(this.quizservice.passPercentage);
+    // console.log(this.quizservice.passPercentage);
   }
 
   startTheQuiz()
   {
-    console.log(this.quizservice.ChosenSubGroupId);
-    console.log(this.quizservice.LoggedInUser);
+    // console.log(this.quizservice.ChosenSubGroupId);
+    // console.log(this.quizservice.LoggedInUser);
    if (this.quizservice.ChosenSubGroupId !== undefined &&  this.quizservice.LoggedInUser !="" && this.quizservice.LoggedInUser !== undefined)
    {
     this.clear();
@@ -34,8 +34,8 @@ passPercentage: number;
     this.quizrouter.navigate(['/quiz']);
     this.quizservice.isQuizStarted = true;
     localStorage.setItem('isQuizStarted', this.quizservice.isQuizStarted.toString());
-    console.log("Quiz Status");
-    console.log(this.quizservice.isQuizStarted);
+    // console.log("Quiz Status");
+    // console.log(this.quizservice.isQuizStarted);
    } 
  
   }

@@ -25,11 +25,15 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.quizservice.isQuizStarted = false;
     this.quizservice.LoggedInUser = localStorage.getItem('userLoggedIn')
-      this.ResultMode = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.ResultMode = parseInt(this.route.snapshot.paramMap.get('id'));
 
       if (this.ResultMode == 1)
       {
         // this.quizservice.passPercentage
+        // console.log("Result");
+        // console.log (this.quizservice.percentageScored);
+        // console.log (this.quizservice.ResultStatus);
+        // console.log (this.quizservice.ChosenQnLanguageNbr);
         this.percentageScored =  this.quizservice.percentageScored;
         this.ResultStatus = this.quizservice.ResultStatus;
         this.AlertPopup = true;
@@ -52,7 +56,7 @@ export class ResultComponent implements OnInit {
         this.passPercentage = this.quizservice.passPercentage;
         this.ResultArray = data;
         this.resultSetCount = this.ResultArray.length;
-        console.log(this.resultSetCount);
+        // console.log(this.resultSetCount);
      });
   }
 

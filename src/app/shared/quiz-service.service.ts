@@ -32,6 +32,7 @@ ChosenSubGroupId: number = 0;
 ChosenQnLanguageNbr: number = 0;
 passPercentage: number = 0;
 percentageScored: number = 0;
+userBackButtonClick: boolean =  false;
 isQuizStarted: boolean=false;
 allowedAttempts: number = 0;
 completedAttempts: number= 0;
@@ -100,6 +101,11 @@ completedAttempts: number= 0;
   getGroupAndSubGroups(groupId: number, LoggedInUser: string) {
     return this.http.get(this.rootAPIURL +"/api/group/" + groupId + '/' +LoggedInUser)
       };
+
+  getuserAttemptsForSubGroup(subgroupId: number, LoggedInUser: string) {
+    return this.http.get(this.rootAPIURL +"/api/userAttempts/" + subgroupId + '/' +LoggedInUser)
+      };
+    
 
   getAnswersForQuestions(QuestionDetails: any): Observable<any> {
     return this.http.post<webApiResponse>(this.rootAPIURL +"/api/answers", QuestionDetails, 

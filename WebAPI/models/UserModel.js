@@ -50,7 +50,14 @@ var loginTask =
         getGroupsAndSubGroups: function(groupId,userLoggedIn, callback) 
         {  
                 return db.query("call usp_GetQuizGroupsAndSubGroups(?,?)", [groupId,userLoggedIn], callback);  
-        } 
+        }, 
+
+// Get The UserAttempts
+        getUserAttemptsForSubGroup: function(SubGroupId, userLoggedIn, callback) 
+        {  
+                return db.query("call usp_GetUserAttemptsForSubGroup(?,?) ", [SubGroupId,userLoggedIn], callback);  
+        }  
+
 
 // bcrypt.hash(FormDetails.password, 10, (hash) => {return hash;})
 };        

@@ -1,7 +1,9 @@
 
 use BibleQuizApp;
 
-/*
+create temporary table ttt (userName varchar(20), passwords varchar(100), PersonName varchar(100), MobileNumber bigint ); 
+
+
 select [Password] from `BibleQuizApp`.`LoginDetails` where LoginId = 1;
 
 create temporary table ttt (userName varchar(20), passwords varchar(100), PersonName varchar(100), MobileNumber bigint ); 
@@ -19,15 +21,14 @@ Error Code: 1054. Unknown column ' 7092810046' in 'field list'	0.015 sec
 select count(*) from `BibleQuizApp`.`LoginDetails`;
 
 create temporary table tttef (userName varchar(20), passwords varchar(100), PersonName varchar(100), MobileNumber bigint ); 
-
+*/
 insert into tttef 
 select * from ttt;
-*/
+
 insert into `BibleQuizApp`.`LoginDetails`(userName, password, PersonName, MobileNumber) 
 select '9750566787', (select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Evangeline', 9750566787;
 
 
-/*
 insert into `BibleQuizApp`.`LoginDetails`(userName, password, PersonName, MobileNumber) 
 select distinct f.* from tttef f where f.userName in (
 select e.userName from ttt e group by e.userName having count(*) >1) 
@@ -40,10 +41,10 @@ and PersonName in (
 
 
 
-insert into `BibleQuizApp`.`LoginDetails`(userName, password, PersonName, MobileNumber) 
-select * from ttt a where not exists (
+insert into `BibleQuizApp`.`LoginDetails`(userName, password, PersonName, MobileNumber);
+select * from ttt a where exists (
 select 1 from `BibleQuizApp`.`LoginDetails` t where a.UserName = t.UserName);
-group by UserName having count(*) =1;
+group by UserName having count(*) >1;
 
 //delete t from ttt t where UserName = '9500965818';
 
@@ -56,31 +57,84 @@ select * from ttt;
 insert into `BibleQuizApp`.`LoginDetails`(userName, password, PersonName, MobileNumber) 
 select f.* from tttef f where f.userName in (
 select e.userName from ttt e group by e.userName having count(*) >1) ; 
-
-
+*/
+;
 select userName from ttt group by userName having count(*) >1;
 
-
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841399989',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Fiona K',9841399989);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500159551',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Manikkammal',9500159551);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840154048',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'AGNES PETER',9840154048);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789826778',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Victor Mahesh',9789826778);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486218645',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'I.victoria',9486218645);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9042469525',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.Jasmine',9042469525);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8668187554',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Judith G',8668187554);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7899957449',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'VIJI JOSEPH',7899957449);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7397418587',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'J. Pricila Jenifer',7397418587);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941406762',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jabez I',9941406762);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789826778',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Victor Mahesh',919789826778);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8825792466',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Julie Bernice',8825792466);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9092063809',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S.Belgia thangam',9092063809);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9952904720',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Esther',9952904720);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9487120451',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Godson Mathew',9487120451);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566436370',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Roselin',9566436370);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566031112',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ruby Prem',9566031112);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8056216884',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Rajathi',8056216884);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7092810046',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S. Julie  Muthu Prabha',7092810046);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7200142770',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Allwin selva singh',7200142770);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7200419865',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Mahibha austiaustin',7200419865);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940817115',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Persiya.M',9940817115);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9994418945',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'ROBINSON S',9994418945);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7092810046',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S.Julie Muthu Prabha',7092810046);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9176535232',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Palin S',9176535232);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7358327833',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jancy',7358327833);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7358811008',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'rathigandhi rathi',7358811008);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7397325435',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Rejula Ebenezer',7397325435);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7397418587',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'J. Pricila Jenifer',7397418587);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7550275456',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'G.Sharon Evangeline Rebecca',7550275456);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7639055564',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.Premalatha',7639055564);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7899957449',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'VIJI JOSEPH',7899957449);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8220352041',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Kumaresan .s',8220352041);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8610305151',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A .CELINE MARY',8610305151);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8668187554',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Judith G',8668187554);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8680983030',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vimala Solomon',8680983030);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940518084',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Rathinakumar',9940518084);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8754383998',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'D.srimathi',8754383998);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8825792466',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Julie Bernice',8825792466);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8870072857',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Anbu Glory.M',8870072857);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8939195756',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Priyanga',8939195756);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9003291506',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Betshrine',9003291506);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9042469525',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.Jasmine',9042469525);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080798191',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'R. Amuthaselvi Juliance',9080798191);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9082145098',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Sujatha jeeva',9082145098);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9092063809',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S.Belgia thangam',9092063809);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9176535232',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Palin S',9176535232);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9380308127',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'John Mani',9380308127);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9442524850',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'D.Helen Navamani',9442524850);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444874032',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Juliet',9444874032);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9445421680',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'AlBert Maria Selvam JD',9445421680);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486165531',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Joanita Ranjini . E',9486165531);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486218645',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'I.victoria',9486218645);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486386214',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'EVANGELINE D',9486386214);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9487870220',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jency Joel',9487870220);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500159551',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Manikkammal',9500159551);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9514785110',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Prasanth',9514785110);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9551757430',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Deepa Jebamalar',9551757430);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566464507',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Pauline Ebenezer',9566464507);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9710101100',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'M.Gnana Selvi',9710101100);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9710309913',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Esther',9710309913);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9715652867',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'I.Jasintha kamalini',9715652867);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9748505322',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Thukilaja',9748505322);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9750566787',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Evangeline',9750566787);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789050909',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'SAROJA GEORGE',9789050909);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789826778',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Victor Mahesh',9789826778);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789959050',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JOYALBENNI',9789959050);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9821270538',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Innocent therasa I',9821270538);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840043564',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Maragatha Jothi S',9840043564);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840154048',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'AGNES Peter',9840154048);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840197004',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Hephzibah J',9840197004);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840240427',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'C Mercy Priya Kumari',9840240427);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840272391',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Sneha Sathiyanathan',9840272391);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840824705',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Edwin Samuelraj P',9840824705);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841399989',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Fiona K',9841399989);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9843868266',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Serin selvarani',9843868266);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9894168436',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Dulcy Gnanaraj',9894168436);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940143143',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Joseph kishore k',9940143143);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940203337',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vinitha Abi',9940203337);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940817115',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Persiya.M',9940817115);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941406762',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jabez I',9941406762);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941599363',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'John Isreal',9941599363);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9942002039',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Selina',9942002039);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9944365055',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jebarani',9944365055);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962015855',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jasmine Sarulatha',9962015855);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962559664',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'New begin nova',9962559664);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9994418945',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'ROBINSON S',9994418945);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9994692747',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'T. Jeyanthi',9994692747);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('0012487300987',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Anita Michael',0012487300987);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('919789826778',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Victor Mahesh',919789826778);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('971561976801',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Thukilaja',971561976801);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940518084',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Rathinam',9940518084);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7871801670',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Freida Jasmine',7871801670);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8939976598',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jenovin',8939976598);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8973521598',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Geetha Arun',8973521598);
@@ -93,16 +147,19 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('852602341
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9710892771',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'M Caroline Joan',9710892771);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080735760',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Hannah Amirthasingh',9080735760);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8902751140',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JACOB A SINGH',8902751140);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500965818',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ghana Rani',9500965818);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500965818',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Gnana Rani',9500965818);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8902751440',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jacob a Singh',8902751440);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566737172',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'NALJI SM',9566737172);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500092475',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'D.Stella Helen',9500092475);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9094849901',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Christina',9094849901);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9003131919',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Kirubakaran',9003131919);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790477846',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Merlin Joy Jesinth.G',9790477846);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('0012487300987',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Anitha',0012487300987);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840229969',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'bini Palas',9840229969);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8778689435',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jerlin Suganya',8778689435);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884331084',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ananda selvan',9884331084);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841580324',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jeba Anand',9841580324);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840913573',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Christopher',9840913573);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9445737413',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Gifta kadatcham',9445737413);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9443191018',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Y.s.George',9443191018);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9578539729',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Amutha Evangeline Mary.V',9578539729);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840572648',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Princely',9840572648);
@@ -118,9 +175,8 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('994095177
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500252559',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vinoth',9500252559);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7550052559',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Crystal',7550052559);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8220183448',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vasantha',8220183448);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9443191018',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'George',9443191018);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940046730',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Shiny',9940046730);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940265962',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),' kakalaivani.s',9940265962);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940265962',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Kakalaivani.s',9940265962);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884819510',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Selvam Gethsyal',9884819510);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9663989078',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Mercy Pushpalatha',9663989078);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9432425232',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Joys Mary Joshua',9432425232);
@@ -131,7 +187,6 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('948832551
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962318320',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'D.Helan dinesh',9962318320);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444083122',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Gresilda',9444083122);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444301238',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'I DAVID',9444301238);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9380308127',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S.john',9380308127);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9894952749',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JAYASEKAR@SIVAKUMAR',9894952749);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9710579120',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'R. Jayakumari',9710579120);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080027620',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'John Mani',9080027620);
@@ -164,7 +219,6 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('994002936
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7339504614',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.REKHA',7339504614);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9865407772',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'M immanuel karuppasamy',9865407772);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8634473298',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Job Dharmaraj',8634473298);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8056244422',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Dr. Sangeetha George',8056244422);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8526977011',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Sharath',8526977011);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9619477312',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jesy',9619477312);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8056244422',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Dr.Sangeetha',8056244422);
@@ -173,20 +227,17 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('917138853
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789022897',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Dr.Christy shelina stephygraph.C',9789022897);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789115071',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Priya Joshua',9789115071);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9791028957',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.Ragini',9791028957);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9791028957',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.Ragini',9791028957);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8870657078',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Crispus Brightstone',8870657078);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8754360320',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Glory Gnana Selvi',8754360320);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8015176236',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jacob Moses',8015176236);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080334653',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Arockiya  ananda raja',9080334653);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080000231',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jeba',9080000231);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884994630',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Saynik',9884994630);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7358697645',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jasmine Glady J',7358697645);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962018031',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vanaja Nelson',9962018031);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8190034054',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Suba Daniel',8190034054);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8754452795',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'M. KEZIA SUSANNA',8754452795);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9710803749',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'John Dinesh Kumar',9710803749);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8754442758',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jeba S',8754442758);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884993584',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Test',9884993584);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9385580877',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Victor Solomon',9385580877);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962290926',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Benjamin Manoharan',9962290926);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790117044',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jennifer Johnson',9790117044);
@@ -198,10 +249,9 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('735869764
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9159193865',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Calep pravin',9159193865);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841822007',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Sofiya',9841822007);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9094867489',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'VINOTHKUMAR J',9094867489);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884448949',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ruth Earnest',9884448949);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9962016232',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Prakash Yoganandam G',9962016232);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884993584',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Tesy',9884993584);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7373419851',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Estherrani.M',737341951);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7373419851',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Estherrani.M',7373419851);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500008537',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Smilin',9500008537);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486026460',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'ALLWYN.G',9486026460);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8220885201',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S. Sheela Rani',8220885201);
@@ -210,25 +260,22 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('984084847
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790129067',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jeevitha Glory',9790129067);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9786020375',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ruban Immanuvel C',9786020375);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789871607',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JOSEPH BLESSING PAUL P M',9789871607);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8220885201',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S. Sheela Rani',8220885201);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941547774',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Megala C',9941547774);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941517147',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'N.Blessing',9941517147);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9786629773',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'reubenchakravarthy',9786629773);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8754678585',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Sathish',8754678585);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8807724042',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Franklin',8807724042);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8681023672',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Varghese p j',8681023672);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789871607',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Joseph Blessing Paul P M',9789871607);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9718338439',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'ANISH KUMAR',9718338439);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940259515',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'G Johanna Johnsi rani',9940259515);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940679998',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Anbarasan',9940679998);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9629330690',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'B. Jeba Poani',9629330690);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9629330690',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'B. Jebamani',9629330690);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884171796',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Regila Raja',9884171796);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9600035457',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jebachandran',9600035457);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7502567272',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'SAMUVEL. R',7502567272);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8903693226',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Evangeline Gladys.j',8903693226);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9865349164',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'J.Milton samuel',9865349164);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9965696718',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'C PETER RAMAKRISHNAN',9965696718);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884448949',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ruth Earnest',9884448949);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9894554752',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Kamalraj',9894554752);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9994498462',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Catherine S Priyadharsini . K',9994498462);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9486919446',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'hepzi gladys elizabeth s',9486919446);
@@ -270,7 +317,7 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('979149543
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9029528301',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jancy',9029528301);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9551114492',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Adhisayaraj E',9551114492);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9443780092',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'A.V.Virginia',9443780092);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840013432',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Angeline Elija',9840013432);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840013432',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Angeline Elijah',9840013432);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941136129',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Robinson',9941136129);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8122299532',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S BENITTA JEBASELVI',8122299532);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500693976',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Justinprabakaran',9500693976);
@@ -318,7 +365,7 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('984136088
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940130607',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Premkumari Jaisingh',9940130607);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9043044983',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Susheela Dhanaraj',9043044983);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7358412132',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Febiola ezhilarasi. D ',7358412132);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444544962',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Arulraj I',9444544962);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9003084033',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Arulraj I',9003084033);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7338888532',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'AMETH B ',7338888532);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941221935',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Anne moses',9941221935);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9944113020',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'PAULRAJ ',9944113020);
@@ -334,7 +381,6 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('960010623
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840722224',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Hannah Daniel',9840722224);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840112300',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Joseph s',9840112300);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8825582852',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vimalaralan',8825582852);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9677560990',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JEBAKANI MARY.M',9677560990);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841715355',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jebakumari Rani',9841715355);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8300121416',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'P.samuel',8300121416);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9498143387',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'E.Mary Rani',9498143387);
@@ -342,17 +388,16 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('950013700
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566119339',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'T.Mercy Jeya bharathi',9566119339);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9626107946',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Baskaran N',9626107946);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841259506',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'V.balachander',9841259506);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841715355',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jebakumari Rani',9841715355);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8098397247',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Esther Jeba J',8098397247);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566582418',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Raj kumar',9566582418);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9559154720',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Annie Sugirtha ',95591547206);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080234942',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'MRS.Minnie Arul',9080234942);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('995591547206',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Annie Sugirtha ',995591547206);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9080234942',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Mrs.Minnie Arul',9080234942);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9443758973',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Devapriya',9443758973);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9489268617',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Alben',9489268617);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444412242',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Charles',9444412242);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9566003142',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Esakkiappan (a) Eszakkial',9566003142);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9176782870',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jasmine',9176782870);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8124664840',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Wesley David',8124664840);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8610372122',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Wesley David',8610372122);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940424608',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Hepsibah Kamala Rani ',9940424608);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9600373589',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jestus',9600373589);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9043618529',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'S. DEVANATHAN ',9043618529);
@@ -367,35 +412,26 @@ insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('909289447
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9003979775',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'G. Lizi Kanaga Bella',9003979775);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8056139475',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Immanuel Ravi',8056139475);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9940104387',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Mrs. Kamalam Paulraj',9940104387);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500098950',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'c. fELICHIA cHARAN sINGH',9500098950);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9500098950',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'C. Felichia Charan Singh',9500098950);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941119163',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Mrs. Ebenezar Edward',9941119163);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('6383618939',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Godson',6383618939);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840112710',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Godlin',9840112710);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840112710',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jenkins',9840112710);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9600122175',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'C. Priya Latha',9600122175);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9898458010',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Roselind. J.D',9898458010);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9884448949',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Ruth Earnest',9884448949);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941133802',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'JEYAROHINI.V',9941133802);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9952509888',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Aaron',9952509888);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9789308292',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Leo Ebenezer',9789308292);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790888629',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'G Reni Shelcy',9790888629);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444262571',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Blessings daniel',9444262571);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('19789308292',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Leo Ebenezer',19789308292);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9444262571',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Blessina Daniel',9444262571);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('7010006360',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jacklin Vincent',7010006360);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8939544588',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Gladrin Gideon Aroul',8939544588);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8610902954',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'J.Ruby Marthal',8610902954);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941133802',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jeyarohini.v',9941133802);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841872993',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'B.Freeda',9841872993);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790888629',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Reni shelcy',9790888629);
+insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9790888629',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'G Reni shelcy',9790888629);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9841851568',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jency prince',9841851568);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9092871316',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'P.A.Shinie',9092871316);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9176579764',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'M.Joseph',9176579764);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9380187231',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Palkani',9380187231);
 insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8610649403',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Arul Mozhi Selvan S',8610649403);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9445737413',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Gifta kadatcham',9445737413);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840913573',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Christopher',9840913573);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9840229969',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'bini Palas',9840229969);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8778689435',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Jerlin Suganya',8778689435);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8675857541',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Daphni',8675857541);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('8012210404',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Vimali Immaculate Mary',8012210404);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9952030775',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'Stella kumari',9952030775);
-insert into ttt(UserName, Passwords, PersonName, MobileNumber) values('9941599363',(select Password from `BibleQuizApp`.`LoginDetails` where LoginId = 1),'John Isreal',9941599363);
+
+
 */

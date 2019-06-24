@@ -37,10 +37,10 @@
             <div *ngIf = "qnLanguageNumber == 1"  class="card cart-block">
                 <h4 class="card-title text-xs-center">Sorry!</h4>
                 <p class="card-title text-xs-center">You have scored {{percentageScored | number: '2.2'}}% and failed.</p>
-                <p class="card-title text-xs-center">Spend some more time on this.</p>
-                <p class="card-title text-xs-center">Let the Lord bless you.</p>
-                <p class="card-title text-xs-center">Your next test will be a Model test.<p>
-                    <p class="card-title text-xs-center">Model Test -2. Genesis: 1-10. Date: 20.06.2019<p>
+                <p class="card-title text-xs-center">Spend  more time on this. Thanks for participating</p>
+                <p class="card-title text-xs-center">God bless you!</p>
+                <!-- <p class="card-title text-xs-center">Your next test will be a Model test.<p> -->
+                    <!-- <p class="card-title text-xs-center">Model Test -2. Genesis: 1-10. Date: 20.06.2019<p> -->
                 <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
                 <!-- <div  class="mbr-figure"><img src="assets/images/Sorry.jpg" class="card-img-top"></div> -->
                 <!-- <div class="card-block">
@@ -50,9 +50,10 @@
 
             <div *ngIf = "qnLanguageNumber == 2"  class="card cart-block">
                 <h4 class="card-title text-xs-center">மன்னிக்கவும்!</h4>
-                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள்<p></p>
+                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள். நீங்கள் வெற்றிபெறவில்லை<p></p>
                 <p class="card-title text-xs-center">தொடர்ந்து இந்த வேதபகுதியை தியானியுங்கள்.<p>
-                <p class="card-title text-xs-center">உங்கள் அடுத்த தேர்வு : பயிற்சி தேர்வு 2: ஆதியாகமம் 1 – 10. 20.06.2019 அன்று.<p>
+                <p class="card-title text-xs-center">வேத வினா போட்டியில் பங்கு பெற்றதற்கு வாழ்த்துக்கள்<p>
+                <p class="card-title text-xs-center">ஆண்டவர்தாமே உங்களை ஆசீர்வதிப்பாராக<p>
                 <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
                 <!-- <div  class="mbr-figure"><img src="assets/images/Sorry.jpg" class="card-img-top"></div> -->
                 <!-- <div class="card-block">
@@ -80,8 +81,8 @@
             <div class="card cart-block">
                 <h4 class="card-title text-xs-center">Congratulations!</h4>
                 <p class="card-title text-xs-center">You have scored {{percentageScored | number: '2.2'}}% and passed.<p>
-                <p class="card-title text-xs-center">Your next test will be a Model test.<p>
-                <p class="card-title text-xs-center">Model Test -2. Genesis: 1-10. Date: 20.06.2019<p>
+                <p class="card-title text-xs-center">You are selected for next round<p>
+                <p class="card-title text-xs-center">God bless You!<p>
                 <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
                 <!-- <div  class="mbr-figure"><img src="assets/images/Winner.jpg" class="card-img-top"></div> -->
                 <!-- <div class="card-block">
@@ -93,9 +94,10 @@
         <div *ngIf = "qnLanguageNumber == 2" class="col-sm-6 col-md-12">
             <div class="card cart-block">
                 <h4 class="card-title text-xs-center">வாழ்த்துக்கள்!</h4>
-                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள்<p></p>
+                <p class="card-title text-xs-center">நீங்கள் {{percentageScored | number: '2.2'}}% மதிப்பெண் பெற்றுள்ளீர்கள்</p>
+                <p class="card-title text-xs-center">நீங்கள் 2வது சுற்றுக்கு முன்னேறி உள்ளீர்கள்</p>
                 <p class="card-title text-xs-center">தொடர்ந்து இந்த வேதபகுதியை தியானியுங்கள்.<p>
-                <p class="card-title text-xs-center">உங்கள் அடுத்த தேர்வு : பயிற்சி தேர்வு 2: ஆதியாகமம் 1 – 10. 20.06.2019 அன்று.<p>
+                <p class="card-title text-xs-center">ஆண்டவர்தாமே உங்களை ஆசீர்வதிப்பாராக.<p>
                 <a [routerLink]="['/result']" [routerLinkActive]= "['router-link-active']">Close</a>  
                 <!-- <div  class="mbr-figure"><img src="assets/images/Winner.jpg" class="card-img-top"></div> -->
                 <!-- <div class="card-block">

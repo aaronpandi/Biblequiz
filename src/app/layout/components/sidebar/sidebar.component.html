@@ -128,8 +128,8 @@
                     </ul>
                 </li>
             </div> -->
-            <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandClass('profile')">
+            <div class="nested-menu" [routerLinkActive]="['router-link-active']">
+                <a class="list-group-item" (click)="addExpandClass('profile')" >
                     <span><i class="fa fa-user"></i>&nbsp; {{userName}}</span>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'profile'">
@@ -150,7 +150,7 @@
                             </a>
                         </li> -->
                         <li>
-                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                            <a [routerLink]="['/login']" (click)="onLoggedout()" [routerLinkActive]="['router-link-active']">
                                 <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
                             </a>
                         </li>
