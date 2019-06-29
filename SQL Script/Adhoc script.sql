@@ -35,13 +35,22 @@ select l.LoginId, userName, personName
 #,case when q1.ResultStatus = true then 'Passed' 
 #	 when q1.ResultStatus = false then 'Failed'
  #    else null end as `Galatians Result` ,q1.TimeTakenToComplete as `Galations Time Taken`, 
-	,q2.MarksScored as `Gospel Mark`, 
+ 	,q1.MarksScored as `Galatians Mark`, 
+case when q1.ResultStatus = true then 'Passed' 
+	 when q1.ResultStatus = false then 'Failed'
+     else null end as `Galatians Result` ,q1.TimeTakenToComplete as `Galatians Time Taken`
+ 	,q2.MarksScored as `Genesis Mark`, 
 case when q2.ResultStatus = true then 'Passed' 
 	 when q2.ResultStatus = false then 'Failed'
-     else null end as `Gospel Result` ,q2.TimeTakenToComplete as `Gospel Time Taken`
+     else null end as `Genesis Result` ,q2.TimeTakenToComplete as `Genesis Time Taken`
+	,q3.MarksScored as `Gospel Mark`, 
+case when q3.ResultStatus = true then 'Passed' 
+	 when q3.ResultStatus = false then 'Failed'
+     else null end as `Gospel Result` ,q3.TimeTakenToComplete as `Gospel Time Taken`
 from BibleQuizApp.LoginDetails l  
-	#left join BibleQuizApp.QuizAttemptDetails q1  on q1.LoginId = l.LoginId and q1.SubGroupId = 2
-    left join BibleQuizApp.QuizAttemptDetails q2  on q2.LoginId = l.LoginId and q2.SubGroupId = 3
+	left join BibleQuizApp.QuizAttemptDetails q1  on q1.LoginId = l.LoginId and q1.SubGroupId = 1
+    left join BibleQuizApp.QuizAttemptDetails q2  on q2.LoginId = l.LoginId and q2.SubGroupId = 2
+    left join BibleQuizApp.QuizAttemptDetails q3  on q3.LoginId = l.LoginId and q3.SubGroupId = 3
 order by l.LoginId;	
 
 -- Login 
@@ -65,7 +74,7 @@ delete from BibleQuizApp.QuizAttemptDetails where  LoginId =27 and SubGroupId = 
 --update SubGroups set QuizDuration = 600,NoOfQuestions=30, PassPercentage =35, NoOfAttemptsAllowed=1, IsEnglishEnabled=1  where SubGroupId = 1;
 
 
---update BibleQuizApp.SubGroups set  QuizEndDt = '2019-06-19' where SubGroupId = 1;
+update BibleQuizApp.SubGroups set  QuizEndDt = '2019-06-28' where SubGroupId = 3;
 --update SubGroups  set NoOfAttemptsAllowed = 3, QUizDuration = 20; 
 
 
